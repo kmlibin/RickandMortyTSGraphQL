@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
+import "./App.css";
+import { CharacterList } from "./components/CharacterList";
+import Sidebar from "./components/Sidebar";
+
+const App: React.FC = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="hero">
+        <div className="title">
+          <img src="https://www.freepnglogos.com/uploads/rick-and-morty-png/list-rick-and-morty-episodes-wikipedia-24.png" />
+          <p>this is a placeholder for a bit of text</p>
+        </div>
+      </div>
+      <div className="content-container">
+        <Sidebar />
+        <CharacterList />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
