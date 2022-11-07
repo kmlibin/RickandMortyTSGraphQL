@@ -1,13 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
+import { useQuery } from "@apollo/client";
 
 import "./App.css";
 import { CharacterCard } from "./components/CharacterCard";
 import Search from "./components/Search";
 import Sidebar from "./components/Sidebar";
 
-
+import { CHECK } from "./gql";
 
 const App: React.FC = () => {
+  const [name, setName] = useState(null);
+  const [species, setSpecies] = useState(null);
+  const [gender, setGender] = useState(null);
+  const [status, setStatus] = useState(null)
+
+  const { error, data, loading } = useQuery(CHECK, {
+    variables: {
+      name: name,
+      gender: gender,
+      species: species,
+      status: status
+    },
+  });
+
+  console.log(data);
+//need to set up variables to control state in filter/search components
   return (
     <div className="App">
       <div className="hero">
@@ -20,7 +37,7 @@ const App: React.FC = () => {
         <Sidebar />
         <div className="feed-container">
           <Search />
-          <CharacterCard />
+          <CharacterCard data={data} />
         </div>
       </div>
     </div>
