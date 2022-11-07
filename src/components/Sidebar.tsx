@@ -1,13 +1,40 @@
-import React from 'react'
-import './Sidebar.css'
+import React, { useState } from "react";
+import {DropDown} from "./DropDown";
+import "./Sidebar.css";
 
-type Props = {}
+type Props = {};
+
+const speciesFilter = [
+  { value: "human", label: "Human" },
+  { value: "alien", label: "Alien" },
+];
+const genderFilter = [
+  { value: "male", label: "Male" },
+  { value: "female", label: "Female" },
+  { value: "unknown", label: "unknown" },
+];
+
+const statusFilter = [
+  { value: "alive", label: "Alive" },
+  { value: "dead", label: "Dead" },
+  { value: "unknown", label: "unknown" },
+];
 
 export default function Sidebar({}: Props) {
+  const [status, setStatus] = useState("");
+  const [gender, setGender] = useState("");
+  const [species, setSpecies] = useState("");
+
   return (
     <div className="sidebar">
-        <h4>Characters</h4>
-        <h4>Favorites</h4>
+      <h4>Characters</h4>
+      <h4>Favorites</h4>
+      <h4>Filters</h4>
+      <div className="filters">
+        <DropDown filters={speciesFilter} />
+        <DropDown filters={genderFilter} />
+        <DropDown filters={statusFilter} />
+      </div>
     </div>
-  )
+  );
 }
