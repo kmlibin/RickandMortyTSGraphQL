@@ -1,29 +1,50 @@
 import React, {useState} from 'react'
+import {useLazyQuery, gql} from '@apollo/client'
 
+
+const GET_FILTERED_CHARACTER = gql `
+  query filterByCharacter($name: String!) {
+  characters(filter: {name: $name}) {
+    results {
+      id
+      name
+      status
+      gender
+      species
+      origin {
+        name
+        dimension
+      }
+      image
+    }
+  }
+}
+`;
 type Props = {}
 
 export default function Search({}: Props) { 
-     const [query, setQuery] = useState("");
+     const [name, setName] = useState("");   
+     const [filteredCharacter, { loading, error, data, called }] = useLazyQuery(
+      GET_FILTERED_CHARACTER,
+      {
+        variables: { name },
+      }
+    );
+    console.log(name)
+    console.log(data)
   return (
-  
-    // //first is a functino we invoke to execute query, second is an object with loading, error, data. also get "called", which just checks if the func has ever been called. bool.
-    // const [getLocations, { loading, error, data, called }] = useLazyQuery(
-    //   GET_CHARACTER_LOCATIONS,
-    //   {
-    //     variables: { name },
-    //   }
-    // );
- 
+
+
       <div>
         <input
-          value={query}
+          value={name}
           type="text"
           onChange={(e) => {
-            setQuery(e.target.value);
+            setName(e.target.value);
           }}
         />
-        <button>Search</button>
-
+        <button onClick={() =>filteredCharacter()}>Search</button>
+        {data && 'data'}
       </div>
     );
 
