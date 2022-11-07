@@ -20,20 +20,22 @@ const GET_FILTERED_CHARACTER = gql `
   }
 }
 `;
-type Props = {}
+
+interface Props {
+
+};
+// type Props = {
+//   handleCharacterFilter: (name: string) => void;
+// }
+
+// ({handleCharacterFilter = () => {}}: Props)
 
 export default function Search({}: Props) { 
      const [name, setName] = useState("");   
-     const [filteredCharacter, { loading, error, data, called }] = useLazyQuery(
-      GET_FILTERED_CHARACTER,
-      {
-        variables: { name },
-      }
-    );
-    console.log(name)
-    console.log(data)
-  return (
 
+    console.log(name)
+
+  return (
 
       <div>
         <input
@@ -43,8 +45,8 @@ export default function Search({}: Props) {
             setName(e.target.value);
           }}
         />
-        <button onClick={() =>filteredCharacter()}>Search</button>
-        {data && 'data'}
+        {/* <button onClick={handleChange}>Search</button> */}
+       
       </div>
     );
 
