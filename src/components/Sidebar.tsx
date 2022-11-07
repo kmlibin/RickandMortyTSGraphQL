@@ -7,6 +7,9 @@ type Props = {};
 const speciesFilter = [
   { value: "human", label: "Human" },
   { value: "alien", label: "Alien" },
+  { value: "robot", label: "Robot" },
+  { value: "humanoid", label: "Humanoid" },
+  { value: "cronenberg", label: "Cronenberg" },
 ];
 const genderFilter = [
   { value: "male", label: "Male" },
@@ -21,9 +24,6 @@ const statusFilter = [
 ];
 
 export default function Sidebar({}: Props) {
-  const [status, setStatus] = useState("");
-  const [gender, setGender] = useState("");
-  const [species, setSpecies] = useState("");
 
   return (
     <div className="sidebar">
