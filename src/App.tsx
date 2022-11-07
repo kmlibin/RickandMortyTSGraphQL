@@ -1,8 +1,11 @@
 import React from "react";
 
 import "./App.css";
-import { CharacterList } from "./components/CharacterList";
+import { CharacterCard } from "./components/CharacterCard";
+import Search from "./components/Search";
 import Sidebar from "./components/Sidebar";
+
+
 
 const App: React.FC = () => {
   return (
@@ -15,7 +18,10 @@ const App: React.FC = () => {
       </div>
       <div className="content-container">
         <Sidebar />
-        <CharacterList />
+        <div className="feed-container">
+          <Search />
+          <CharacterCard />
+        </div>
       </div>
     </div>
   );
