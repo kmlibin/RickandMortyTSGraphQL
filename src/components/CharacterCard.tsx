@@ -18,12 +18,12 @@ interface Props {
 }
 
 export const CharacterCard = ({data}:Props)=> {
-    
+    console.log(data.characters)
 
   return (
   
     <div className="character-container">
-       {data && data.characters.results.map((char:ICharacter) => (
+       {data && data.data.characters.results.map((char:ICharacter) => (
             <div key={char.id} className="character">
                 <img src={char.image} />
                 <h2>{char.name}</h2>
