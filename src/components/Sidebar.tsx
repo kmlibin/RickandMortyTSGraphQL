@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import {DropDown} from "./DropDown";
 import "./Sidebar.css";
+import {QueryString} from '../model'
 
-type Props = {};
+type Props = {
+  queryString: {
+    [k: string]: string
+  };
+};
 
 const speciesFilter = [
   { value: "human", label: "Human" },
@@ -10,6 +15,7 @@ const speciesFilter = [
   { value: "robot", label: "Robot" },
   { value: "humanoid", label: "Humanoid" },
   { value: "cronenberg", label: "Cronenberg" },
+  { value: "mythological creature", label: "Mythological Creature" },
 ];
 const genderFilter = [
   { value: "male", label: "Male" },
@@ -23,7 +29,7 @@ const statusFilter = [
   { value: "unknown", label: "unknown" },
 ];
 
-export default function Sidebar({}: Props) {
+export default function Sidebar({queryString}: Props) {
 
   return (
     <div className="sidebar">
@@ -31,9 +37,9 @@ export default function Sidebar({}: Props) {
       <h4>Favorites</h4>
       <h4>Filters</h4>
       <div className="filters">
-        <DropDown filters={speciesFilter} />
-        <DropDown filters={genderFilter} />
-        <DropDown filters={statusFilter} />
+        <DropDown filters={speciesFilter} queryString={queryString} query={'species'}/>
+        <DropDown filters={genderFilter} queryString={queryString} query={'gender'}/>
+        <DropDown filters={statusFilter} queryString={queryString} query={'status'}/>
       </div>
     </div>
   );
