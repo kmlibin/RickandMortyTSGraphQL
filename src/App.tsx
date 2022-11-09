@@ -31,7 +31,11 @@ const App: React.FC = () => {
   const status = searchParams.get('status') ;
 
   //create query string object that is ultimately sent to setSearchParams in child components
-  let queryString = Object.fromEntries([...searchParams]);
+  let queryString: {
+    [k: string]: string
+}
+= Object.fromEntries([...searchParams]);
+
   console.log(queryString)
 
   const { error, data, loading } = useQuery(GET_CHARACTERS, {
@@ -56,7 +60,7 @@ const App: React.FC = () => {
         </div>
         <div className="content-container">
           
-          <Sidebar />
+          <Sidebar queryString={queryString}/>
           <div className="feed-container">
             <Search name={name} setName={setName} />
             <Routes>
