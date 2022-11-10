@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import {DropDown} from "./DropDown";
 import "./Sidebar.css";
-import {QueryString} from '../model'
+
 
 type Props = {
   queryString: {
     [k: string]: string
   };
-};
 
+};
+//delete sidebar and just put the extra headers in App.ts?
 const speciesFilter = [
   { value: "human", label: "Human" },
   { value: "alien", label: "Alien" },
@@ -33,9 +34,8 @@ export default function Sidebar({queryString}: Props) {
 
   return (
     <div className="sidebar">
-      <h4>Characters</h4>
-      <h4>Favorites</h4>
-      <h4>Filters</h4>
+      
+      <h4>Filter by:</h4>
       <div className="filters">
         <DropDown filters={speciesFilter} queryString={queryString} query={'species'}/>
         <DropDown filters={genderFilter} queryString={queryString} query={'gender'}/>
