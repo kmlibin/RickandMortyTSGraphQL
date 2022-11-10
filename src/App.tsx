@@ -15,9 +15,11 @@ import Sidebar from "./components/Sidebar";
 import { GET_CHARACTERS } from "./gql";
 import { MainFeed } from "./pages/MainFeed";
 import { Favorites } from "./pages/Favorites";
+import { ICharacter } from "./model";
 
 const App: React.FC = () => {
   const [name, setName] = useState<string | null>(null);
+  const [favorites, setFavorites] = useState<ICharacter[]>([])
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -31,7 +33,6 @@ const App: React.FC = () => {
     [k: string]: string;
   } = Object.fromEntries([...searchParams]);
 
-  console.log(queryString);
 
   const { error, data, loading } = useQuery(GET_CHARACTERS, {
     variables: {
@@ -49,6 +50,13 @@ const App: React.FC = () => {
   //   status = null;
   // };
 
+  // const handleAdd = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  
+  //     setFavorites([...favorites,  {id:} ]);
+
+   
+  // };
 
   return (
     <div className="App">
@@ -63,8 +71,8 @@ const App: React.FC = () => {
         <div className="feed-container">
           <Search name={name} setName={setName}/>
           <Routes>
-            <Route path="/" element={data && <MainFeed data={data} />} />
-            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/" element={data && <MainFeed data={data} favorites={favorites} setFavorites={setFavorites}/>} />
+            <Route path="/favorites" element={<Favorites favorites={favorites} setFavorites={setFavorites}/>} />
           </Routes>
         </div>
       </div>
