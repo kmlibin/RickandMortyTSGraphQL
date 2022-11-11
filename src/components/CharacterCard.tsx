@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./CharacterList.css";
 import { ICharacter } from "../model";
@@ -20,34 +20,144 @@ interface Props {
 }
 
 export const CharacterCard = ({ data, favorites, setFavorites }: Props) => {
+  const [showFavorites, setShowFavorites] = useState<boolean>(false);
+  const [clicked, setClicked] = useState<any>([]);
+
+  const handleFillHeart = (id: string | undefined) => {
+    if(clicked.includes(id)) {
+      return
+    }
+    setClicked([...clicked, id]);
+  };
+
+  const handleRemoveFillHeart = (id: string | undefined) => {
+    setClicked((prev: string[]) => prev.filter((el: string) => el !== id));
+  };
+
+  //move handleadd/delete to parent component
+  const handleDeleteFavorite = (id: string | undefined) => {
+    const newList = favorites.filter((char) => char.id !== id);
+    setFavorites(newList);
+  };
+
+  const handleAddFavorite = (char: ICharacter) => {
+    if(favorites.includes(char)) {
+      return
+    }
+    setFavorites([
+      ...favorites,
+      {
+        id: char.id,
+        image: char.image,
+        name: char.name,
+        gender: char.gender,
+        species: char.species,
+        origin: char.origin,
+        status: char.status,
+        isFavorite: true,
+      },
+    ])
+  }
+
   console.log(favorites);
 
-  // const addFavorite = (e, char) => {
-  //   e.preventDefault();
-  //   setFavorites([...favorites, char]);
-    
-  //   }
-  // };
+  if (!showFavorites) {
 
-  // const handleDelete = (id) => {
-  //   const newFavorites = favorites.filter((char) => char !== char.id);
-  //   setFavorites(newFavorites);
-  // };
+    //for regular data page
 
+    return (
+      <div className="character-container">
+        <div className="button-container">
+          <button onClick={() => setShowFavorites(true)}>Favorites</button>
+        </div>
+        {data &&
+          data.characters.results.map((char: ICharacter) => (
+            <div key={char.id} className="character">
+              <div className="img-container">
+                <img src={char.image} />
+                <div className="status-container">
+                  {clicked?.includes(char.id) ? (
+                    <i
+                      className="fa-solid fill fa-heart"
+                      onClick={() => {
+                        handleRemoveFillHeart(char.id);
+                        handleDeleteFavorite(char.id);
+                      }}
+                    ></i>
+                  ) : (
+                    <i
+                      className="fa-regular fa-heart"
+                      onClick={() => {
+                        handleFillHeart(char.id);
+                        handleAddFavorite(char)
+                      }}
+                    ></i>
+                  )}
+
+                  <p
+                    className={
+                      char.status === "Alive"
+                        ? "alive"
+                        : char.status === "Dead"
+                        ? "dead"
+                        : "unknown"
+                    }
+                  >
+                    {char.status}
+                  </p>
+                </div>
+              </div>
+              <h2>{char.name}</h2>
+              <p>species: {char.species}</p>
+              <p>gender: {char.gender}</p>
+              <p>dimension of origin: {char.origin?.name}</p>
+            </div>
+          ))}
+      </div>
+    );
+  }
+
+  //for favorites page
   return (
     <div className="character-container">
-      {data &&
-        data.characters.results.map((char: ICharacter) => (
+      <div className="button-container">
+        <button onClick={() => setShowFavorites(false)}>All Characters</button>
+      </div>
+      {favorites &&
+        favorites.map((char) => (
           <div key={char.id} className="character">
             <div className="img-container">
               <img src={char.image} />
               <div className="status-container">
-                {/* <i
-                  className="fa-regular fa-heart"
-                  onClick={(e) => setFavorites([...favorites, char])}
-            
-                ></i> */}
-                <p className={(char.status === 'Alive'? 'alive': ( char.status === 'Dead' ? 'dead': 'unknown'))}>{char.status}</p>
+                {clicked?.includes(char.id) ? (
+                  <i
+                    className="fa-solid fill fa-heart"
+                    onClick={() => {
+                      handleRemoveFillHeart(char.id);
+                      handleDeleteFavorite(char.id);
+                    }}
+                  ></i>
+                ) : (
+                  <i
+                    className="fa-regular fa-heart"
+                    onClick={() => {
+                      handleFillHeart(char.id);
+                      handleAddFavorite(char)
+                    }}
+                  ></i>
+                )}
+
+                <p
+                  className={
+                    char.status === "Alive"
+                      ? "alive"
+                      : char.status === "Dead"
+                      ? "dead"
+                      : "unknown"
+                  }
+                >
+                  {char.status}
+                </p>
               </div>
             </div>
             <h2>{char.name}</h2>
