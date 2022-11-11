@@ -10,5 +10,7 @@ export interface ICharacter {
     gender: string,
     species: string,
     origin?: {name?: string, dimension?: string},
-    status?: string
+    status?: string,
+    isFavorite?: boolean
+ 
 }
