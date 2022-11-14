@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useQuery } from "@apollo/client";
 import {
   BrowserRouter,
@@ -19,8 +19,9 @@ import { ICharacter } from "./model";
 
 const App: React.FC = () => {
   const [name, setName] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  const [totalPages, setTotalPages] = useState<number|undefined>()
   const [favorites, setFavorites] = useState<ICharacter[]>([])
-
   const [searchParams, setSearchParams] = useSearchParams();
 
   //grab and store search params
@@ -36,6 +37,7 @@ const App: React.FC = () => {
 
   const { error, data, loading } = useQuery(GET_CHARACTERS, {
     variables: {
+      page: currentPage,
       name: name,
       gender: gender,
       species: species,
@@ -43,6 +45,12 @@ const App: React.FC = () => {
     },
   });
 
+  // console.log(data.characters.info.count)
+useMemo(() => {
+   setTotalPages(data?.characters.info.count)
+}, [data])
+
+console.log(totalPages)
   // const handleClear = (): void => {
   //   setName("");
   //   species = null;
@@ -57,7 +65,7 @@ const App: React.FC = () => {
 
    
   // };
-
+console.log(data)
   return (
     <div className="App">
       <div className="hero">
@@ -71,8 +79,7 @@ const App: React.FC = () => {
         <div className="feed-container">
           <Search name={name} setName={setName}/>
           <Routes>
-            <Route path="/" element={data && <MainFeed data={data} favorites={favorites} setFavorites={setFavorites}/>} />
-            <Route path="/favorites" element={<Favorites favorites={favorites} setFavorites={setFavorites}/>} />
+            <Route path="/" element={data && <MainFeed data={data} favorites={favorites} setFavorites={setFavorites} currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages}/>} />
           </Routes>
         </div>
       </div>
