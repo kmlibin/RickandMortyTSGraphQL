@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import "./CharacterList.css";
 import { ICharacter } from "../model";
+import Pagination from "./Pagination";
 
 // interface ICharacter {
 //     id?: string,
@@ -17,9 +18,12 @@ interface Props {
   data: any;
   favorites: ICharacter[];
   setFavorites: React.Dispatch<React.SetStateAction<ICharacter[]>>;
+  currentPage: Number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  totalPages: Number | undefined;
 }
-
-export const CharacterCard = ({ data, favorites, setFavorites }: Props) => {
+//check out isFavorite boolean
+export const CharacterCard = ({ data, favorites, setFavorites, currentPage, setCurrentPage, totalPages }: Props) => {
   const [showFavorites, setShowFavorites] = useState<boolean>(false);
   const [clicked, setClicked] = useState<any>([]);
 
@@ -113,6 +117,7 @@ export const CharacterCard = ({ data, favorites, setFavorites }: Props) => {
               <p>dimension of origin: {char.origin?.name}</p>
             </div>
           ))}
+          {data && <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages}/>}
       </div>
     );
   }
