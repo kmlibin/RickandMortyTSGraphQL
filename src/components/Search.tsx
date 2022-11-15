@@ -1,48 +1,53 @@
 import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-
-
 interface Props {
-  name: string | null;
-  setName: React.Dispatch<React.SetStateAction<string | null>>;
-  // handleClear: () => void;
-};
+  queryString: {
+    [k: string]: string;
+  };
+}
 
-export default function Sidebar({name, setName}: Props) {
-  const [queryName, setQueryName] = useState<string | null>("");
-  const [searchParams, setSearchParams] = useSearchParams()
+export default function Search({ queryString }: Props) {
+  const [queryName, setQueryName] = useState<string>("");
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setName(queryName)
-  }
-
-  const handleClick = () => {
-    setName(null)
-    // handleClear()
-    
-    for (const key of searchParams.keys()) {
-      searchParams.delete(key);
+  //submit function for search. NOT FUNCTIONAL WITH FAVORITES TOGGLE
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) : void => {
+    if (queryString) {
+      e.preventDefault();
+      setSearchParams({ ...queryString, ["name"]: queryName });
+      setQueryName("");
     }
-    setSearchParams(searchParams)
- 
- }
-  console.log()
+  };
+
+  //code for clearing search params
+  //     for (const key of searchParams.keys()) {
+  //       searchParams.delete(key);
+  //     }
+  //     setSearchParams(searchParams)
+  //  }
+
   return (
-    <div>
-      <form onSubmit = {(e) => handleSubmit(e)}>
-      <input
-        placeholder="Search by Character"
-        value= {queryName? queryName : ""}
-        type="text"
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setQueryName(e.target.value);
-        }}
-      />
-      <button>Search</button>
+    <div className="search">
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <input
+          placeholder="Search by Character"
+          value={queryName ? queryName : ""}
+          type="text"
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            setQueryName(e.target.value);
+          }}
+        />
+        <button>Search</button>
       </form>
-      <button onClick={handleClick}>All Characters</button>
+      <button
+        onClick={() => {
+          searchParams.delete("name");
+          setSearchParams(searchParams);
+        }}
+      >
+        Clear Search
+      </button>
     </div>
   );
 }
