@@ -1,35 +1,54 @@
-import React, {useMemo} from 'react'
+import React from "react";
 
 interface Props {
-    currentPage: Number;
-    setCurrentPage:React.Dispatch<React.SetStateAction<number>>
-    totalPages: Number | undefined;
+  currentPage: Number | undefined;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  totalPages: Number | undefined;
 }
 
-const Pagination = ({currentPage, setCurrentPage, totalPages}: Props) => {
-  
+const Pagination = ({ currentPage, setCurrentPage, totalPages }: Props) => {
 
-  
-  let pageButtons =[]
-
-  if(totalPages) {
-
-
-  for (let i = 1; i <= totalPages; i++){
-    pageButtons.push(<button key={i} onClick = {() => setCurrentPage(i)}> {i} </button>)
-    
-  }
-
-}
+  //handles next page
+  const handleNextPage = () : void => {
+    if (currentPage === null) {
+      setCurrentPage(1);
+    }
+    setCurrentPage(Number(currentPage) + 1);
+  };
 
 
+  //handles previous page
+  const handlePrevPage = () : void => {
+    if (currentPage === null) {
+      setCurrentPage(1);
+    }
+    setCurrentPage(Number(currentPage) - 1);
+  };
+//maybe add total results at the bottom, beneath the buttons? i.e "there are 200 characters that match this search"
 
-console.log(pageButtons)
   return (
     <div className="pagination">
-      {pageButtons}
+      <button
+        type="button"
+        aria-label="Go to previous page"
+        onClick={handlePrevPage}
+        disabled={currentPage === 1 ? true : false}
+      >
+        <i className="fa-solid fa-chevron-left"></i>
+      </button>
+          
+           <p>{Number(currentPage)} of {Number(totalPages)}</p>
+           <p></p>
+      <button
+        type="button"
+        aria-label="Go to next page"
+        onClick={handleNextPage}
+        disabled={currentPage === totalPages ? true : false}
+      >
+        <i className="fa-solid fa-chevron-right"></i>
+      </button>
     </div>
-  )
-}
+  );
+};
 
-export default Pagination
+export default Pagination;
