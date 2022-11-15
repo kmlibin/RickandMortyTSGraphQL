@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import { Select, QueryString } from "../model";
+
 import { useSearchParams } from "react-router-dom";
+
+//TS interfaces
+import { Select } from "../model";
 
 interface Props {
   filters: Select[];
@@ -8,14 +11,17 @@ interface Props {
     [k: string]: string;
   };
   query: string;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const DropDown = ({ filters, queryString, query }: Props) => {
+export const DropDown = ({ filters, queryString, query, setCurrentPage }: Props) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [showButton, setShowButton] = useState<boolean>(true);
   const [queryValue, setQueryValue] = useState<string>(query || "");
-console.log(query)
-  //add blank so that filters clear...or an x or something
+
+//todo: if user already has q params in url, toggle so that the buttons show, not the dropdowns
+//nice to have searchbar option for user to input their own dimension/species/gender
+
   return (
     <div className="filterboxes">
       {showButton && (
@@ -24,6 +30,7 @@ console.log(query)
             setSearchParams({ ...queryString, [query]: e.target.value });
             setShowButton(false);
             setQueryValue(e.target.value)
+            setCurrentPage(1)
           }}
         >
           <option hidden>{query}</option>
@@ -45,6 +52,7 @@ console.log(query)
               setShowButton(true);
               searchParams.delete(query);
               setSearchParams(searchParams);
+              setCurrentPage(1)
             }}
           >
             <i className="fa-solid fa-xmark"></i>
