@@ -1,40 +1,70 @@
 import React, { useState, useMemo } from "react";
-import { useQuery } from "@apollo/client";
 import {
-  BrowserRouter,
   Routes,
   Route,
   useSearchParams,
 } from "react-router-dom";
 
-import "./App.css";
-import { CharacterCard } from "./components/CharacterCard";
-import Search from "./components/Search";
-import Sidebar from "./components/Sidebar";
+//Apollo
+import { useQuery } from "@apollo/client";
 
+//queries
 import { GET_CHARACTERS } from "./gql";
+
+ //TS interfaces
+import { ICharacter, Select } from "./model";
+
+//pages and components
 import { MainFeed } from "./pages/MainFeed";
-import { Favorites } from "./pages/Favorites";
-import { ICharacter } from "./model";
+import { DropDown } from "./components/DropDown";
+
+//styles
+import "./App.css";
+
+//filters for dropdown menus - store in own file?
+const speciesFilter: Select[] = [
+  { value: "human", label: "Human" },
+  { value: "alien", label: "Alien" },
+  { value: "robot", label: "Robot" },
+  { value: "humanoid", label: "Humanoid" },
+  { value: "cronenberg", label: "Cronenberg" },
+  { value: "animal", label: "Animal" },
+  { value: "mythological creature", label: "Mythological Creature" },
+  { value: "disease", label: "Disease" },
+];
+const genderFilter: Select[] = [
+  { value: "male", label: "Male" },
+  { value: "female", label: "Female" },
+  { value: "genderless", label: "Genderless" },
+  { value: "unknown", label: "Unknown" },
+];
+
+const statusFilter: Select[] = [
+  { value: "alive", label: "Alive" },
+  { value: "dead", label: "Dead" },
+  { value: "unknown", label: "Unknown" },
+];
 
 const App: React.FC = () => {
-  const [name, setName] = useState<string | null>(null);
-  const [currentPage, setCurrentPage] = useState<number>(1)
-  const [totalPages, setTotalPages] = useState<number|undefined>()
-  const [favorites, setFavorites] = useState<ICharacter[]>([])
+  // const [name, setName] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number | undefined>();
+  const [favorites, setFavorites] = useState<ICharacter[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
 
   //grab and store search params
   const species: string | null = searchParams.get("species");
   const gender: string | null = searchParams.get("gender");
   const status: string | null = searchParams.get("status");
+  const name: string | null = searchParams.get("name");
 
+  console.log(species, gender, status, name)
   //create query string object that is ultimately sent to setSearchParams in child components
   let queryString: {
     [k: string]: string;
   } = Object.fromEntries([...searchParams]);
 
-
+  //grab data
   const { error, data, loading } = useQuery(GET_CHARACTERS, {
     variables: {
       page: currentPage,
@@ -45,27 +75,11 @@ const App: React.FC = () => {
     },
   });
 
-  // console.log(data.characters.info.count)
-useMemo(() => {
-   setTotalPages(data?.characters.info.count)
-}, [data])
+  //calculate total pages with each data load
+  useMemo(() => {
+    setTotalPages(data?.characters.info.pages);
+  }, [data]);
 
-console.log(totalPages)
-  // const handleClear = (): void => {
-  //   setName("");
-  //   species = null;
-  //   gender = null;
-  //   status = null;
-  // };
-
-  // const handleAdd = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  
-  //     setFavorites([...favorites,  {id:} ]);
-
-   
-  // };
-console.log(data)
   return (
     <div className="App">
       <div className="hero">
@@ -75,11 +89,48 @@ console.log(data)
         </div>
       </div>
       <div className="content-container">
-        <Sidebar queryString={queryString} />
-        <div className="feed-container">
-          <Search name={name} setName={setName}/>
+        <div className="sidebar">
+          <h4>Filter by:</h4>
+          <div className="filters">
+            <DropDown
+              filters={speciesFilter}
+              queryString={queryString}
+              query={"species"}
+              setCurrentPage={setCurrentPage}
+            />
+            <DropDown
+              filters={genderFilter}
+              queryString={queryString}
+              query={"gender"}
+              setCurrentPage={setCurrentPage}
+            />
+            <DropDown
+              filters={statusFilter}
+              queryString={queryString}
+              query={"status"}
+              setCurrentPage={setCurrentPage}
+            />
+          </div>
+        </div>
+        <div className="data-container">
+     
           <Routes>
-            <Route path="/" element={data && <MainFeed data={data} favorites={favorites} setFavorites={setFavorites} currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages}/>} />
+            <Route
+              path="/"
+              element={
+                data && (
+                  <MainFeed
+                    data={data}
+                    favorites={favorites}
+                    setFavorites={setFavorites}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    totalPages={totalPages}
+                    queryString={queryString}
+                  />
+                )
+              }
+            />
           </Routes>
         </div>
       </div>
