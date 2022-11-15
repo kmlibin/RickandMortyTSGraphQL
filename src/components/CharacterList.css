@@ -1,7 +1,12 @@
-.feed-container {
+.data-container {
     width: 75%;
 }
 
+.feed-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .character-container {
     width: 100%;
     display: flex;
@@ -81,4 +86,21 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
+}
+
+
+.active {
+    font-size: xx-large;
+}
+
+.pagination {
+    display: flex;
+   
+}
+
+.search {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    
 }
