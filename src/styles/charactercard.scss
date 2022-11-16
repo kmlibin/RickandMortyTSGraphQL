@@ -1,0 +1,88 @@
+//data container is in mainfeed.tsx
+.data-container {
+    width: 75%;
+  }
+
+.feed-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.character-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.button-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.character {
+  max-width: 20%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+  p {
+    margin: 2px 0;
+  }
+}
+
+.img-container {
+  width: 100%;
+  height: auto;
+  position: relative;
+  img {
+    height: auto;
+    width: 100%;
+  }
+}
+
+.status-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+
+  p {
+    font-size: 10px;
+    border-radius: 5px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-bottom: 1px;
+    margin-top: 4px;
+  }
+
+  .dead {
+    background-color: red;
+  }
+
+  .alive {
+    background-color: rgb(31, 223, 31);
+  }
+
+  .unknown {
+    background-color: yellow;
+  }
+  
+  .fill {
+  color: red;
+}
+}
+
+/* .img-container i{
+    position: absolute;
+    top: .5em;
+    right: .5em;
+} */
+
+
+
