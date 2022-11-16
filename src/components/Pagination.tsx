@@ -1,5 +1,10 @@
 import React from "react";
 
+
+//styles 
+import '../styles/pagination.scss';
+
+
 interface Props {
   currentPage: Number | undefined;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
@@ -38,7 +43,7 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages }: Props) => {
       </button>
           
            <p>{Number(currentPage)} of {Number(totalPages)}</p>
-           <p></p>
+          
       <button
         type="button"
         aria-label="Go to next page"

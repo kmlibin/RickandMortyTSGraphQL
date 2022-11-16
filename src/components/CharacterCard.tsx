@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 
 // TS interfaces
-import { ICharacter } from "../model";
+import { ICharacter } from "../resources/model";
 
 //components
 import Pagination from "./Pagination";
 import Search from "./Search";
 
 //styles
-import "./CharacterList.css";
+import "../styles/charactercard.scss"
+
+
 
 interface Props {
   data: any;

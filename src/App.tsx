@@ -9,17 +9,17 @@ import {
 import { useQuery } from "@apollo/client";
 
 //queries
-import { GET_CHARACTERS } from "./gql";
+import { GET_CHARACTERS } from "./resources/gql";
 
  //TS interfaces
-import { ICharacter, Select } from "./model";
+import { ICharacter, Select } from "./resources/model";
 
 //pages and components
 import { MainFeed } from "./pages/MainFeed";
 import { DropDown } from "./components/DropDown";
 
 //styles
-import "./App.css";
+import "./styles/App.scss"
 
 //filters for dropdown menus - store in own file?
 const speciesFilter: Select[] = [
@@ -112,7 +112,7 @@ const App: React.FC = () => {
             />
           </div>
         </div>
-        <div className="data-container">
+        
      
           <Routes>
             <Route
@@ -132,7 +132,7 @@ const App: React.FC = () => {
               }
             />
           </Routes>
-        </div>
+        
       </div>
     </div>
   );

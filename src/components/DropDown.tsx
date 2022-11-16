@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 //TS interfaces
-import { Select } from "../model";
+import { Select } from "../resources/model";
 
 interface Props {
   filters: Select[];

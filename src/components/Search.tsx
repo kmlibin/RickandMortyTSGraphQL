@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
+
+//styles
+import "../styles/search.scss";
+
 interface Props {
   queryString: {
     [k: string]: string;

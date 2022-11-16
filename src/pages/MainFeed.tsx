@@ -1,7 +1,7 @@
 import React from "react";
 
 //TS interfaces
-import { ICharacter } from "../model";
+import { ICharacter } from "../resources/model";
 
 //Components
 import { CharacterCard } from "../components/CharacterCard";
@@ -31,6 +31,7 @@ export const MainFeed = ({
   //no data? need to have "nothing to see"
   return (
     data && (
+      <div className="data-container">
       <CharacterCard
         data={data}
         favorites={favorites}
@@ -40,6 +41,7 @@ export const MainFeed = ({
         totalPages={totalPages}
         queryString={queryString}
       />
+      </div>
     )
   );
 };
