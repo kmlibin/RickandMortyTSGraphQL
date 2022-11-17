@@ -1,9 +1,5 @@
 import React, { useState, useMemo } from "react";
-import {
-  Routes,
-  Route,
-  useSearchParams,
-} from "react-router-dom";
+import { Routes, Route, useSearchParams } from "react-router-dom";
 
 //Apollo
 import { useQuery } from "@apollo/client";
@@ -11,7 +7,7 @@ import { useQuery } from "@apollo/client";
 //queries
 import { GET_CHARACTERS } from "./files/gql";
 
- //TS interfaces
+//TS interfaces
 import { ICharacter, Select } from "./files/model";
 
 //pages and components
@@ -19,7 +15,7 @@ import { MainFeed } from "./pages/MainFeed";
 import { DropDown } from "./components/DropDown";
 
 //styles
-import "./styles/App.scss"
+import "./styles/App.scss";
 
 //filters for dropdown menus - store in own file?
 const speciesFilter: Select[] = [
@@ -58,7 +54,7 @@ const App: React.FC = () => {
   const status: string | null = searchParams.get("status");
   const name: string | null = searchParams.get("name");
 
-  console.log(species, gender, status, name)
+  console.log(species, gender, status, name);
   //create query string object that is ultimately sent to setSearchParams in child components
   let queryString: {
     [k: string]: string;
@@ -85,16 +81,19 @@ const App: React.FC = () => {
       <div className="hero">
         <div className="title">
           <img src="https://www.freepnglogos.com/uploads/rick-and-morty-png/list-rick-and-morty-episodes-wikipedia-24.png" />
-          <p>this is a placeholder for a bit of text</p>
+          <p>Boom! Big reveal! I turned myself into a pickle!</p>
         </div>
       </div>
+      {/* //previously was its own component, but found I didn't love the prop drilling as the page got larger. If I continue to
+      expand the page, I'd likely turn this back into a component and utilize context or redux for state management. */}
       <div className="content-container">
         <div className="sidebar">
-          
           <div className="filters">
-            
-            <img src ="https://www.freepnglogos.com/uploads/rick-and-morty-png/rick-and-morty-monsters-transparent-png-stickpng-2.png" alt="rick and morty monsters transparent png stickpng" />
-<h4>Look at the filters, Morty!</h4>
+            <img
+              src="https://www.freepnglogos.com/uploads/rick-and-morty-png/rick-and-morty-monsters-transparent-png-stickpng-2.png"
+              alt="rick and morty monsters transparent png stickpng"
+            />
+            <h4>Open your eyes, Morty!</h4>
             <DropDown
               filters={speciesFilter}
               queryString={queryString}
@@ -115,27 +114,26 @@ const App: React.FC = () => {
             />
           </div>
         </div>
-        
-     
-          <Routes>
-            <Route
-              path="/"
-              element={
-                data && (
-                  <MainFeed
-                    data={data}
-                    favorites={favorites}
-                    setFavorites={setFavorites}
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
-                    totalPages={totalPages}
-                    queryString={queryString}
-                  />
-                )
-              }
-            />
-          </Routes>
-        
+
+        <Routes>
+          <Route
+            path="/"
+            element={
+              data && (
+                <MainFeed
+                  data={data}
+                  favorites={favorites}
+                  setFavorites={setFavorites}
+                  currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
+                  totalPages={totalPages}
+                  queryString={queryString}
+                  name={name?  name : ""}
+                />
+              )
+            }
+          />
+        </Routes>
       </div>
     </div>
   );
