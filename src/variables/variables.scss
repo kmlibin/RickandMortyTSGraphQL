@@ -5,7 +5,21 @@ $headerFont : Sniglet;
 $bodyFont: Cabin;
 
 //text-colors:
-$primaryColor: rgb(40,40,40);
+$primaryColor: rgba(40,40,40, .9);
+
+//colors
+$nameColor: rgba(75, 170, 202, .9);
+$mediumBlue:rgba(123, 197,230, .9);
+$lightBlue: rgba(151, 225, 255, .9);
+$lightestBlue: rgba(209, 255, 255, .9);
+$border: rgb(0, 69,97);
 
 //spacing:
-$small: 3px;
+$xsmall: 3px;
+$small: 5px;
+
+
+//mixins
+@mixin mediumBlue($opacity) {
+    background-color: rgba(123, 197, 230, $opacity)
+}

@@ -26,7 +26,26 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  
 }
+
+.favorites {
+    margin-bottom: 5px;
+    margin-right: 20px;
+    background-color: $lightestBlue;
+    font-family: $bodyFont;
+    padding: 3px 6px;
+    border-radius: 5px;
+}
+
+.all {
+    background-color: $lightestBlue;
+    font-family: $bodyFont;
+    padding: 3px 6px;
+    border-radius: 5px;
+    margin-top: 3em;
+}
+
 
 .character {
   max-width: 20%;
@@ -34,23 +53,23 @@
   flex-direction: column;
   padding: 1em;
   margin-bottom: 1em;
-  border-radius: 5px;
+  border-radius: $small;
   background-color: rgba(211, 211, 211, .5);
 
   h2 {
     font-family: $headerFont;
-    box-shadow: 0px 0px 10px 2px rgb(0, 69,97) inset;
-    border: 1px solid rgb(0, 69,97);
-    border-radius: 5px;
+    box-shadow: 0px 0px 10px 2px $border inset;
+    border: 1px solid $border;
+    border-radius: $small;
     color: $primaryColor;
     font-size: 28px;
-    margin-top: $small;
-    margin-bottom: 5px;
+    margin-top: $xsmall;
+    margin-bottom: $small;
     text-align: center;
     width: 100%;
     padding-top: 8px;
     padding-bottom: 8px;
-    background-color: rgba(75, 170, 202, .9);
+    background-color: $nameColor
   }
 
   p {
@@ -59,29 +78,29 @@
     max-width: 100%;
     font-family: $bodyFont;
     font-size: 14px;
-    padding: 5px;
+    padding: $small;
   }
 
   .tag {
     font-family: $headerFont;
-    padding-right: $small;
+    padding-right: $xsmall;
     font-size:15px;
     font-weight: bold;
     letter-spacing: .8px;
   }
 
   .color-one{
-    background-color: rgba(123, 197,230, .9);
-    border-radius: 5px;
+    @include mediumBlue(.9);
+    border-radius: $small;
   }
 
   .color-two{
-    background-color: rgba(151, 225, 255, .9);
-    border-radius: 5px;
+    background-color: $lightBlue;
+    border-radius: $small;
   }
   .color-three{
-    background-color: rgba(209, 255, 255, .9);
-    border-radius: 5px;
+    background-color: $lightestBlue;
+    border-radius: $small;
   }
 }
 
@@ -102,7 +121,6 @@
 
 .status-container {
   display: flex;
-  flex-direction: column;
   align-items: center;
   height: auto;
   position: absolute;
@@ -111,8 +129,17 @@
 
   p {
     font-size: 10px;
+    display: flex;
     border-radius: 50%;
-    // padding: 0, 2px, 1px, 2px;
+    height: 6px;
+    text-align: center;
+    margin-right: $xsmall;
+    width: 6px;
+    align-items: center;
+    justify-content: center;
+    font-family: $bodyFont;
+    font-weight: bolder;
+    line-height: 6px;
  
   }
 
@@ -129,7 +156,7 @@
   }
 
   .fill {
-    color: red;
+    color: rgb(214, 44, 44);
   }
 }
 

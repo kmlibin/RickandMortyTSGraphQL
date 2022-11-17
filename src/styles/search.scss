@@ -1,5 +1,36 @@
+@import "../variables/variables.scss";
+
+.searchbar-container {
+   display: flex;
+    width: 96%;
+    margin-top: 31px;
+}
+
+.search-button {
+    background-color: $lightestBlue;
+    font-family: $bodyFont;
+    border-radius: 5px;
+}
+
 .search {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
+    width: 50%;
+
+    form {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        font-family: $bodyFont;
+        border-radius: 5px;
+    }
   }
+
+  .clear-search {
+    margin-right: auto;
+  padding: 0;
+  }
+

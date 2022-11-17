@@ -25,9 +25,10 @@
   }
 
   p {
-    color: white;
+    color: $lightestBlue;
     font-size: 25px;
-    padding-right: 5em;
+    padding-right: 3.2em;
+    padding-bottom: 25px;
     margin-top: -0.3em;
   }
 }
@@ -42,17 +43,16 @@
 
   .sidebar {
    width: 15%;
-   margin-top: 20px;
+   margin-top: 80px;
   }
 }
 
 //beginning of dropdown section
 .filters {
- 
+ @include mediumBlue(.75);
   width: 15%;
   padding: 5px;
   border-radius:5px;
-  background-color: rgba(151, 225, 255, .75);
   position: fixed;
   text-align: center;
   display: flex;

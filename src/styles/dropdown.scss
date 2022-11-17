@@ -3,21 +3,22 @@
 @import '../variables/variables.scss';
 
 .filterboxes{
-    padding: 5px;
+    padding: $small;
 
  select {
     font-family: $bodyFont;
-    background-color: rgba(209, 255, 255, .9);
-    padding: 5px;
+    background-color: $lightestBlue;
+    padding: $small;
     width: 100%;
   }
 }
 
 .filter-button {
-    padding: 5px;
+    padding: $small;
     font-family: $bodyFont;
-    background-color: rgba(209, 255, 255, .9);
-    border-radius: 5px;
+    background-color: $lightestBlue;
+    border-radius: $small;
+    border-color: $border;
 
    i {
     padding-left: 4px;
