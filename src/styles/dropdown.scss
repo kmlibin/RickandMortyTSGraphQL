@@ -1,0 +1,25 @@
+//variables
+
+@import '../variables/variables.scss';
+
+.filterboxes{
+    padding: 5px;
+
+ select {
+    font-family: $bodyFont;
+    background-color: rgba(209, 255, 255, .9);
+    padding: 5px;
+    width: 100%;
+  }
+}
+
+.filter-button {
+    padding: 5px;
+    font-family: $bodyFont;
+    background-color: rgba(209, 255, 255, .9);
+    border-radius: 5px;
+
+   i {
+    padding-left: 4px;
+   }
+}

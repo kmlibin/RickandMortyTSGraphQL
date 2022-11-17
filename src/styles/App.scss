@@ -1,3 +1,6 @@
+//variables
+@import "../variables/variables.scss";
+
 .hero {
   display: flex;
   justify-content: flex-end;
@@ -14,6 +17,7 @@
   flex-direction: column;
   align-items: flex-end;
   padding-right: 10em;
+  font-family: $headerFont;
 
   img {
     padding-top: 2em;
@@ -29,11 +33,51 @@
 }
 
 .content-container {
+  background-image: url("../../public/images/sky.jpg");
+  background-size: contain;
   width: 100%;
+  height: 100%;
   display: flex;
+  justify-content: space-evenly;
 
   .sidebar {
-    width: 25%;
+   width: 15%;
+   margin-top: 20px;
+  }
+}
+
+//beginning of dropdown section
+.filters {
+ 
+  width: 15%;
+  padding: 5px;
+  border-radius:5px;
+  background-color: rgba(151, 225, 255, .75);
+  position: fixed;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5em;
+  
+
+  h4 {
+    margin: 0;
+    max-width: 100%;
+    padding: 3px;
+    font-size: 18px;
+    font-family: $headerFont;
+    color: 	$primaryColor;
+    letter-spacing: 1px;
+  
+    
+  }
+
+  img {
+    height: auto;
+    width: 85%;
+    margin:auto;
+  
+  
   }
 }
 

@@ -1,7 +1,12 @@
+//variables
+@import "../variables/variables.scss"; 
+
 //data container is in mainfeed.tsx
-.data-container {
-    width: 75%;
-  }
+  .data-container {
+  width: 75%;
+  min-height: 100vh;
+  
+}
 
 .feed-container {
   display: flex;
@@ -11,6 +16,7 @@
 
 .character-container {
   width: 100%;
+
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
@@ -26,20 +32,71 @@
   max-width: 20%;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-radius: 5px;
+  background-color: rgba(211, 211, 211, .5);
+
+  h2 {
+    font-family: $headerFont;
+    box-shadow: 0px 0px 10px 2px rgb(0, 69,97) inset;
+    border: 1px solid rgb(0, 69,97);
+    border-radius: 5px;
+    color: $primaryColor;
+    font-size: 28px;
+    margin-top: $small;
+    margin-bottom: 5px;
+    text-align: center;
+    width: 100%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: rgba(75, 170, 202, .9);
+  }
 
   p {
-    margin: 2px 0;
+    margin: 3px 0;
+    color: $primaryColor;
+    max-width: 100%;
+    font-family: $bodyFont;
+    font-size: 14px;
+    padding: 5px;
+  }
+
+  .tag {
+    font-family: $headerFont;
+    padding-right: $small;
+    font-size:15px;
+    font-weight: bold;
+    letter-spacing: .8px;
+  }
+
+  .color-one{
+    background-color: rgba(123, 197,230, .9);
+    border-radius: 5px;
+  }
+
+  .color-two{
+    background-color: rgba(151, 225, 255, .9);
+    border-radius: 5px;
+  }
+  .color-three{
+    background-color: rgba(209, 255, 255, .9);
+    border-radius: 5px;
   }
 }
+
 
 .img-container {
   width: 100%;
   height: auto;
   position: relative;
+  margin-bottom: 5px;
+
   img {
     height: auto;
     width: 100%;
+    border-radius: 5px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   }
 }
 
@@ -54,11 +111,9 @@
 
   p {
     font-size: 10px;
-    border-radius: 5px;
-    padding-left: 2px;
-    padding-right: 2px;
-    padding-bottom: 1px;
-    margin-top: 4px;
+    border-radius: 50%;
+    // padding: 0, 2px, 1px, 2px;
+ 
   }
 
   .dead {
@@ -72,10 +127,10 @@
   .unknown {
     background-color: yellow;
   }
-  
+
   .fill {
-  color: red;
-}
+    color: red;
+  }
 }
 
 /* .img-container i{
@@ -83,6 +138,3 @@
     top: .5em;
     right: .5em;
 } */
-
-
-
