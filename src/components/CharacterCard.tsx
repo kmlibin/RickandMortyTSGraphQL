@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 // TS interfaces
-import { ICharacter } from "../resources/model";
+import { ICharacter } from "../files/model";
 
 //components
 import Pagination from "./Pagination";
@@ -89,7 +89,7 @@ export const CharacterCard = ({
             data.characters.results.map((char: ICharacter) => (
               <div key={char.id} className="character">
                 <div className="img-container">
-                  <img src={char.image} />
+                  <img alt="character" src={char.image} />
                   <div className="status-container">
                     {clicked?.includes(char.id) ? (
                       <i
@@ -119,14 +119,14 @@ export const CharacterCard = ({
                           : "unknown"
                       }
                     >
-                      {char.status}
+                      {char.status === "Alive" ? "A" : char.status === "Dead" ? "D" : "U"}
                     </p>
                   </div>
                 </div>
                 <h2>{char.name}</h2>
-                <p>species: {char.species}</p>
-                <p>gender: {char.gender}</p>
-                <p>dimension of origin: {char.origin?.name}</p>
+                <p className="color-one"><span className="tag">Species:</span> {char.species}</p>
+                <p className="color-two"><span className="tag">Gender:</span> {char.gender}</p>
+                <p className="color-three"><span className="tag">Dimension:</span> {char.origin?.name}</p>
               </div>
             ))}
         </div>
@@ -185,14 +185,14 @@ export const CharacterCard = ({
                       : "unknown"
                   }
                 >
-                  {char.status}
+                  {char.status === "Alive" ? "A" : char.status === "Dead" ? "D" : "U"}
                 </p>
               </div>
             </div>
             <h2>{char.name}</h2>
-            <p>species: {char.species}</p>
-            <p>gender: {char.gender}</p>
-            <p>dimension of origin: {char.origin?.name}</p>
+            <p className="color-one"><span className="tag">Species:</span> {char.species}</p>
+                <p className="color-two"><span className="tag">Gender:</span> {char.gender}</p>
+                <p className="color-three"><span className="tag">Dimension:</span>{char.origin?.name}</p>
           </div>
         ))}
     </div>
