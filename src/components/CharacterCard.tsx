@@ -22,6 +22,7 @@ interface Props {
   queryString: {
     [k: string]: string;
   };
+  name: string;
 }
 
 export const CharacterCard = ({
@@ -32,6 +33,7 @@ export const CharacterCard = ({
   setCurrentPage,
   totalPages,
   queryString,
+  name
 }: Props) => {
   const [showFavorites, setShowFavorites] = useState<boolean>(false);
   const [clicked, setClicked] = useState<any>([]);
@@ -80,10 +82,10 @@ export const CharacterCard = ({
 
     return (
       <div className="feed-container">
-        <Search queryString={queryString} />
+        <Search queryString={queryString} name={name} />
         <div className="character-container">
           <div className="button-container">
-            <button onClick={() => setShowFavorites(true)}>Favorites</button>
+            <button className="favorites" onClick={() => setShowFavorites(true)}>Favorites</button>
           </div>
           {data &&
             data.characters.results.map((char: ICharacter) => (
@@ -91,7 +93,19 @@ export const CharacterCard = ({
                 <div className="img-container">
                   <img alt="character" src={char.image} />
                   <div className="status-container">
-                    {clicked?.includes(char.id) ? (
+                      <p
+                      className={
+                        char.status === "Alive"
+                          ? "alive"
+                          : char.status === "Dead"
+                          ? "dead"
+                          : "unknown"
+                      }
+                      
+                    >
+                      {char.status === "Alive" ? "A" : char.status === "Dead" ? "D" : "U"}
+                      </p>
+                      {clicked?.includes(char.id) ? (
                       <i
                         className="fa-solid fill fa-heart"
                         onClick={() => {
@@ -102,7 +116,7 @@ export const CharacterCard = ({
                     ) : (
                       //decides which heart to show, filled or blank?
                       <i
-                        className="fa-regular fa-heart"
+                        className="fa-regular  fa-heart"
                         onClick={() => {
                           handleFillHeart(char.id);
                           handleAddFavorite(char);
@@ -110,17 +124,9 @@ export const CharacterCard = ({
                       ></i>
                     )}
 
-                    <p
-                      className={
-                        char.status === "Alive"
-                          ? "alive"
-                          : char.status === "Dead"
-                          ? "dead"
-                          : "unknown"
-                      }
-                    >
-                      {char.status === "Alive" ? "A" : char.status === "Dead" ? "D" : "U"}
-                    </p>
+                  
+                      
+                    
                   </div>
                 </div>
                 <h2>{char.name}</h2>
@@ -149,7 +155,7 @@ export const CharacterCard = ({
   return (
     <div className="character-container">
       <div className="button-container">
-        <button onClick={() => setShowFavorites(false)}>All Characters</button>
+        <button className="all" onClick={() => setShowFavorites(false)}>All Characters</button>
       </div>
       {/* //no favorites? add "nothing to see" */}
       {favorites &&

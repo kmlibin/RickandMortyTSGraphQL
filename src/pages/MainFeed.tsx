@@ -1,7 +1,7 @@
 import React from "react";
 
 //TS interfaces
-import { ICharacter } from "../resources/model";
+import { ICharacter } from "../files/model";
 
 //Components
 import { CharacterCard } from "../components/CharacterCard";
@@ -16,6 +16,7 @@ interface Props {
   queryString: {
     [k: string]: string;
   };
+  name: string;
 }
 
 export const MainFeed = ({
@@ -26,6 +27,7 @@ export const MainFeed = ({
   setCurrentPage,
   totalPages,
   queryString,
+  name
 }: Props) => {
   ///data loading? need to have loading state
   //no data? need to have "nothing to see"
@@ -40,6 +42,7 @@ export const MainFeed = ({
         setCurrentPage={setCurrentPage}
         totalPages={totalPages}
         queryString={queryString}
+        name={name}
       />
       </div>
     )
