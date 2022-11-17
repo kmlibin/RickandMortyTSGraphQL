@@ -9,10 +9,10 @@ import {
 import { useQuery } from "@apollo/client";
 
 //queries
-import { GET_CHARACTERS } from "./resources/gql";
+import { GET_CHARACTERS } from "./files/gql";
 
  //TS interfaces
-import { ICharacter, Select } from "./resources/model";
+import { ICharacter, Select } from "./files/model";
 
 //pages and components
 import { MainFeed } from "./pages/MainFeed";
@@ -90,8 +90,11 @@ const App: React.FC = () => {
       </div>
       <div className="content-container">
         <div className="sidebar">
-          <h4>Filter by:</h4>
+          
           <div className="filters">
+            
+            <img src ="https://www.freepnglogos.com/uploads/rick-and-morty-png/rick-and-morty-monsters-transparent-png-stickpng-2.png" alt="rick and morty monsters transparent png stickpng" />
+<h4>Look at the filters, Morty!</h4>
             <DropDown
               filters={speciesFilter}
               queryString={queryString}
