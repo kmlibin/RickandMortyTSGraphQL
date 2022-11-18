@@ -8,9 +8,7 @@ import Pagination from "./Pagination";
 import Search from "./Search";
 
 //styles
-import "../styles/charactercard.scss"
-
-
+import "../styles/charactercard.scss";
 
 interface Props {
   data: any;
@@ -33,7 +31,7 @@ export const CharacterCard = ({
   setCurrentPage,
   totalPages,
   queryString,
-  name
+  name,
 }: Props) => {
   const [showFavorites, setShowFavorites] = useState<boolean>(false);
   const [clicked, setClicked] = useState<any>([]);
@@ -52,7 +50,7 @@ export const CharacterCard = ({
   };
 
   //deletes favorite from list
-  const handleDeleteFavorite = (id: string | undefined) :void  => {
+  const handleDeleteFavorite = (id: string | undefined): void => {
     const newList: ICharacter[] = favorites.filter((char) => char.id !== id);
     setFavorites(newList);
   };
@@ -85,7 +83,12 @@ export const CharacterCard = ({
         <Search queryString={queryString} name={name} />
         <div className="character-container">
           <div className="button-container">
-            <button className="favorites" onClick={() => setShowFavorites(true)}>Favorites</button>
+            <button
+              className="favorites"
+              onClick={() => setShowFavorites(true)}
+            >
+              View Favorites
+            </button>
           </div>
           {data &&
             data.characters.results.map((char: ICharacter) => (
@@ -93,7 +96,7 @@ export const CharacterCard = ({
                 <div className="img-container">
                   <img alt="character" src={char.image} />
                   <div className="status-container">
-                      <p
+                    <p
                       className={
                         char.status === "Alive"
                           ? "alive"
@@ -101,11 +104,14 @@ export const CharacterCard = ({
                           ? "dead"
                           : "unknown"
                       }
-                      
                     >
-                      {char.status === "Alive" ? "A" : char.status === "Dead" ? "D" : "U"}
-                      </p>
-                      {clicked?.includes(char.id) ? (
+                      {char.status === "Alive"
+                        ? "A"
+                        : char.status === "Dead"
+                        ? "D"
+                        : "U"}
+                    </p>
+                    {clicked?.includes(char.id) ? (
                       <i
                         className="fa-solid fill fa-heart"
                         onClick={() => {
@@ -123,16 +129,18 @@ export const CharacterCard = ({
                         }}
                       ></i>
                     )}
-
-                  
-                      
-                    
                   </div>
                 </div>
                 <h2>{char.name}</h2>
-                <p className="color-one"><span className="tag">Species:</span> {char.species}</p>
-                <p className="color-two"><span className="tag">Gender:</span> {char.gender}</p>
-                <p className="color-three"><span className="tag">Dimension:</span> {char.origin?.name}</p>
+                <p className="color-one">
+                  <span className="tag">Species:</span> {char.species}
+                </p>
+                <p className="color-two">
+                  <span className="tag">Gender:</span> {char.gender}
+                </p>
+                <p className="color-three">
+                  <span className="tag">Dimension:</span> {char.origin?.name}
+                </p>
               </div>
             ))}
         </div>
@@ -155,7 +163,9 @@ export const CharacterCard = ({
   return (
     <div className="character-container">
       <div className="button-container">
-        <button className="all" onClick={() => setShowFavorites(false)}>All Characters</button>
+        <button className="all" onClick={() => setShowFavorites(false)}>
+          All Characters
+        </button>
       </div>
       {/* //no favorites? add "nothing to see" */}
       {favorites &&
@@ -164,6 +174,21 @@ export const CharacterCard = ({
             <div className="img-container">
               <img src={char.image} />
               <div className="status-container">
+                <p
+                  className={
+                    char.status === "Alive"
+                      ? "alive"
+                      : char.status === "Dead"
+                      ? "dead"
+                      : "unknown"
+                  }
+                >
+                  {char.status === "Alive"
+                    ? "A"
+                    : char.status === "Dead"
+                    ? "D"
+                    : "U"}
+                </p>
                 {clicked?.includes(char.id) ? (
                   <i
                     className="fa-solid fill fa-heart"
@@ -181,24 +206,19 @@ export const CharacterCard = ({
                     }}
                   ></i>
                 )}
-
-                <p
-                  className={
-                    char.status === "Alive"
-                      ? "alive"
-                      : char.status === "Dead"
-                      ? "dead"
-                      : "unknown"
-                  }
-                >
-                  {char.status === "Alive" ? "A" : char.status === "Dead" ? "D" : "U"}
-                </p>
               </div>
             </div>
             <h2>{char.name}</h2>
-            <p className="color-one"><span className="tag">Species:</span> {char.species}</p>
-                <p className="color-two"><span className="tag">Gender:</span> {char.gender}</p>
-                <p className="color-three"><span className="tag">Dimension:</span>{char.origin?.name}</p>
+            <p className="color-one">
+              <span className="tag">Species:</span> {char.species}
+            </p>
+            <p className="color-two">
+              <span className="tag">Gender:</span> {char.gender}
+            </p>
+            <p className="color-three">
+              <span className="tag">Dimension:</span>
+              {char.origin?.name}
+            </p>
           </div>
         ))}
     </div>
