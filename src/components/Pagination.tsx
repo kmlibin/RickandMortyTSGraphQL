@@ -1,9 +1,7 @@
 import React from "react";
 
-
-//styles 
-import '../styles/pagination.scss';
-
+//styles
+import "../styles/pagination.scss";
 
 interface Props {
   currentPage: Number | undefined;
@@ -12,28 +10,27 @@ interface Props {
 }
 
 const Pagination = ({ currentPage, setCurrentPage, totalPages }: Props) => {
-
   //handles next page
-  const handleNextPage = () : void => {
+  const handleNextPage = (): void => {
     if (currentPage === null) {
       setCurrentPage(1);
     }
     setCurrentPage(Number(currentPage) + 1);
   };
 
-
   //handles previous page
-  const handlePrevPage = () : void => {
+  const handlePrevPage = (): void => {
     if (currentPage === null) {
       setCurrentPage(1);
     }
     setCurrentPage(Number(currentPage) - 1);
   };
-//maybe add total results at the bottom, beneath the buttons? i.e "there are 200 characters that match this search"
+  //maybe add total results at the bottom, beneath the buttons? i.e "there are 200 characters that match this search"
 
   return (
     <div className="pagination">
       <button
+        className="btn"
         type="button"
         aria-label="Go to previous page"
         onClick={handlePrevPage}
@@ -41,10 +38,13 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages }: Props) => {
       >
         <i className="fa-solid fa-chevron-left"></i>
       </button>
-          
-           <p>{Number(currentPage)} of {Number(totalPages)}</p>
-          
+
+      <p>
+        {Number(currentPage)} of {Number(totalPages)}
+      </p>
+
       <button
+        className="btn"
         type="button"
         aria-label="Go to next page"
         onClick={handleNextPage}
