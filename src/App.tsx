@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { Routes, Route, useSearchParams } from "react-router-dom";
 
 //Apollo
@@ -16,6 +16,8 @@ import { DropDown } from "./components/DropDown";
 
 //styles
 import "./styles/App.scss";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 //filters for dropdown menus - store in own file?
 const speciesFilter: Select[] = [
@@ -42,11 +44,15 @@ const statusFilter: Select[] = [
 ];
 
 const App: React.FC = () => {
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
+
   // const [name, setName] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number | undefined>();
   const [favorites, setFavorites] = useState<ICharacter[]>([]);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   //grab and store search params
   const species: string | null = searchParams.get("species");
@@ -80,7 +86,11 @@ const App: React.FC = () => {
     <div className="App">
       <div className="hero">
         <div className="title">
-          <img src="https://www.freepnglogos.com/uploads/rick-and-morty-png/list-rick-and-morty-episodes-wikipedia-24.png" />
+          <img
+            data-aos="flip-right"
+            data-aos-duration="3000"
+            src="https://www.freepnglogos.com/uploads/rick-and-morty-png/list-rick-and-morty-episodes-wikipedia-24.png"
+          />
           <p>Boom! Big reveal! I turned myself into a pickle!</p>
         </div>
       </div>
@@ -128,7 +138,7 @@ const App: React.FC = () => {
                   setCurrentPage={setCurrentPage}
                   totalPages={totalPages}
                   queryString={queryString}
-                  name={name?  name : ""}
+                  name={name ? name : ""}
                 />
               )
             }
