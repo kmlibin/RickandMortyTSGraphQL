@@ -11,6 +11,10 @@
     padding: $small;
     width: 100%;
   }
+
+  select:hover {
+   cursor:pointer;
+  }
 }
 
 .filter-button {
@@ -19,8 +23,17 @@
     background-color: $lightestBlue;
     border-radius: $small;
     border-color: $border;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+   
 
    i {
     padding-left: 4px;
+    vertical-align: middle;
+   }
+
+   i:hover {
+      cursor: pointer;
    }
 }

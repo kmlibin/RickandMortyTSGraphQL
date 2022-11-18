@@ -31,11 +31,24 @@
 
 .favorites {
     margin-bottom: 5px;
-    margin-right: 20px;
+    margin-right: 1.71em;
     background-color: $lightestBlue;
     font-family: $bodyFont;
-    padding: 3px 6px;
+    padding: 2px 10px;
     border-radius: 5px;
+    line-height: 25px;
+    transition: background-color .5s ease-out;
+  
+}
+.favorites:hover {
+  cursor: pointer;
+    transform: scale(110%);
+    background-color: $mediumBlue;
+}
+
+.favorites:active {
+    transform: scale(90%);
+    box-shadow: 0 0px 5px 0px $border inset;
 }
 
 .all {
@@ -55,6 +68,8 @@
   margin-bottom: 1em;
   border-radius: $small;
   background-color: rgba(211, 211, 211, .5);
+  z-index:1;
+  transition: background-color .5s ease-in-out;
 
   h2 {
     font-family: $headerFont;
@@ -104,6 +119,12 @@
   }
 }
 
+.character:hover {
+    background-color: white;
+    transform: scale(110%);
+    z-index: 10;
+}
+
 
 .img-container {
   width: 100%;
@@ -129,6 +150,7 @@
 
   p {
     font-size: 10px;
+   
     display: flex;
     border-radius: 50%;
     height: 6px;
@@ -141,6 +163,12 @@
     font-weight: bolder;
     line-height: 6px;
  
+  }     
+
+
+  i:hover {
+    cursor:pointer;
+    transform: scale(120%); color: rgb(214, 44, 44);
   }
 
   .dead {

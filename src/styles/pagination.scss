@@ -1,3 +1,42 @@
+
+@import "../variables/variables.scss";
+
 .pagination {
     display: flex;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    background-color: $mediumBlue;
+    padding: 15px;
+    align-items: center;
+    border-radius: 5px;
+    
+
+      p {
+        font-family: $headerFont;
+        font-size: 18px;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+  }
+
+  .btn {
+    background-color: $lightestBlue;
+    font-family: $bodyFont;
+    padding: 3px 6px;
+    border-radius: 5px;
+    transition: background-color .5s ease-out;
+   border:none;
+  
+  }
+  .btn:hover {
+      cursor: pointer;
+      border: 1px solid $border;
+      transform: scale(110%);
+      background-color: $lightBlue;
+    }
+
+
+  .btn:active {
+      transform: scale(90%);
+      box-shadow: 0 0px 5px 0px $border inset;
   }
