@@ -43,6 +43,7 @@ export default function Search({ queryString, name: urlName }: Props) {
               setQueryName(e.target.value);
             }}
           />
+          <i className="fa-solid fa-magnifying-glass"></i> 
           <button className="search-button">Search</button>
         </form>
       
