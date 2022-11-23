@@ -11,6 +11,7 @@
   background-position: left bottom;
   background-repeat: no-repeat;
   background-size: cover;
+  
 }
 .title {
   display: flex;
@@ -19,8 +20,9 @@
   padding-right: 10em;
   font-family: $headerFont;
 
+
   img {
-    padding-top: 2em;
+   
     height: 18em;
   }
 
@@ -51,6 +53,7 @@
     padding-right: 3.2em;
     padding-bottom: 25px;
     margin-top: -0.3em;
+  
   }
 }
 
@@ -75,7 +78,7 @@
   padding: 5px;
   border-radius:5px;
   position: fixed;
-  text-align: center;
+
   display: flex;
   flex-direction: column;
   margin-top: 1.85em;

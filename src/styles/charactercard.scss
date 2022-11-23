@@ -16,16 +16,19 @@
 
 .character-container {
   width: 100%;
-
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  position: relative;
+  margin-top: 30px;
 }
 
 .button-container {
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  position: absolute;
+  top: -3.7em;
   
 }
 
@@ -51,12 +54,44 @@
     box-shadow: 0 0px 5px 0px $border inset;
 }
 
-.all {
-    background-color: $lightestBlue;
+
+.favorites-container {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  padding-top: 13px;
+  padding-bottom: 26px;
+
+  p {
+    color: $lightestBlue;
+    font-size: 20px;
+    margin-right: 1.71em;
     font-family: $bodyFont;
-    padding: 3px 6px;
-    border-radius: 5px;
-    margin-top: 3em;
+    margin-top: 10px;
+  }
+}
+
+.all {
+ width: 15%;
+  margin-right: 1.71em;
+  background-color: $lightestBlue;
+  font-family: $bodyFont;
+  padding: 2px 10px;
+  border-radius: 5px;
+  line-height: 25px;
+  transition: background-color .5s ease-out;
+
+}
+.all:hover {
+cursor: pointer;
+  transform: scale(110%);
+  background-color: $mediumBlue;
+}
+
+.all:active {
+  transform: scale(90%);
+  box-shadow: 0 0px 5px 0px $border inset;
 }
 
 

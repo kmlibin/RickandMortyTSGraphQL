@@ -18,14 +18,16 @@
 }
 
 .filter-button {
+   color: rgb(211,211,211);
     padding: $small;
     font-family: $bodyFont;
-    background-color: $lightestBlue;
+    background-color: $border;
     border-radius: $small;
     border-color: $border;
     width: 100%;
     display: flex;
     justify-content: space-between;
+    border-image: none;
    
 
    i {
