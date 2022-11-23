@@ -5,6 +5,8 @@ import { ICharacter } from "../files/model";
 
 //Components
 import { CharacterCard } from "../components/CharacterCard";
+import NothingToSee from "../components/NothingToSee";
+import Spinner from "../components/Spinner";
 
 interface Props {
   data: any;
@@ -17,6 +19,7 @@ interface Props {
     [k: string]: string;
   };
   name: string;
+  loading: boolean;
 }
 
 export const MainFeed = ({
@@ -27,24 +30,28 @@ export const MainFeed = ({
   setCurrentPage,
   totalPages,
   queryString,
-  name
+  name,
+  loading
+ 
 }: Props) => {
   ///data loading? need to have loading state
   //no data? need to have "nothing to see"
+
   return (
-    data && (
-      <div className="data-container">
-      <CharacterCard
-        data={data}
-        favorites={favorites}
-        setFavorites={setFavorites}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        totalPages={totalPages}
-        queryString={queryString}
-        name={name}
-      />
-      </div>
-    )
+    <div className="data-container">
+      {loading && <Spinner />}
+      {data && (
+        <CharacterCard
+          data={data}
+          favorites={favorites}
+          setFavorites={setFavorites}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalPages={totalPages}
+          queryString={queryString}
+          name={name}
+        />
+      )}
+    </div>
   );
 };
