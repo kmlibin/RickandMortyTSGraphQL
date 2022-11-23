@@ -3,7 +3,11 @@ import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 //TS interfaces
-import { Select } from "../resources/model";
+import { Select } from "../files/model";
+
+//styles
+
+import "../styles/dropdown.scss"
 
 interface Props {
   filters: Select[];
@@ -12,23 +16,22 @@ interface Props {
   };
   query: string;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  param: string;
 }
 
-export const DropDown = ({ filters, queryString, query, setCurrentPage }: Props) => {
+export const DropDown = ({ filters, queryString, query, setCurrentPage, param }: Props) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [showButton, setShowButton] = useState<boolean>(true);
   const [queryValue, setQueryValue] = useState<string>(query || "");
 
 //todo: if user already has q params in url, toggle so that the buttons show, not the dropdowns
 //nice to have searchbar option for user to input their own dimension/species/gender
-
+console.log(param)
   return (
     <div className="filterboxes">
-      {showButton && (
+      {!param && (
         <select
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
             setSearchParams({ ...queryString, [query]: e.target.value });
-            setShowButton(false);
             setQueryValue(e.target.value)
             setCurrentPage(1)
           }}
@@ -43,13 +46,11 @@ export const DropDown = ({ filters, queryString, query, setCurrentPage }: Props)
         </select>
       )}
 
-      {!showButton && (
+      {param && (
         <button className="filter-button">
-          {queryValue.charAt(0).toUpperCase() + queryValue.slice(1)}
+          {param.charAt(0).toUpperCase() + param.slice(1)}
           <span
-            className="close"
             onClick={() => {
-              setShowButton(true);
               searchParams.delete(query);
               setSearchParams(searchParams);
               setCurrentPage(1)
