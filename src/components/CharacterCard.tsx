@@ -9,6 +9,7 @@ import Search from "./Search";
 
 //styles
 import "../styles/charactercard.scss";
+import NothingToSee from "./NothingToSee";
 
 interface Props {
   data: any;
@@ -161,13 +162,19 @@ export const CharacterCard = ({
   //a bit moot.
 
   return (
-    <div className="character-container">
-      <div className="button-container">
+    <div className="character-container"> 
+    <div className="favorites-container">
+      
         <button className="all" onClick={() => setShowFavorites(false)}>
           All Characters
         </button>
+        <p>*filters do not work in favorites list</p>
       </div>
-      {/* //no favorites? add "nothing to see" */}
+      
+     {favorites.length < 1 && 
+      <NothingToSee text="add some favorites!"/>
+     } 
+      
       {favorites &&
         favorites.map((char) => (
           <div key={char.id} className="character">
