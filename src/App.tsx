@@ -13,11 +13,14 @@ import { ICharacter, Select } from "./files/model";
 //pages and components
 import { MainFeed } from "./pages/MainFeed";
 import { DropDown } from "./components/DropDown";
+import NothingToSee from "./components/NothingToSee";
 
-//styles
+//styles & AOS init
 import "./styles/App.scss";
 import Aos from "aos";
 import "aos/dist/aos.css";
+
+
 
 //filters for dropdown menus - store in own file?
 const speciesFilter: Select[] = [
@@ -77,6 +80,7 @@ const App: React.FC = () => {
     },
   });
 
+  console.log(gender)
   //calculate total pages with each data load
   useMemo(() => {
     setTotalPages(data?.characters.info.pages);
@@ -97,6 +101,7 @@ const App: React.FC = () => {
       {/* //previously was its own component, but found I didn't love the prop drilling as the page got larger. If I continue to
       expand the page, I'd likely turn this back into a component and utilize context or redux for state management. */}
       <div className="content-container">
+        {error || loading ? "" : (
         <div className="sidebar">
           <div className="filters">
             <img
@@ -108,28 +113,32 @@ const App: React.FC = () => {
               filters={speciesFilter}
               queryString={queryString}
               query={"species"}
+              param={species? species : ""}
               setCurrentPage={setCurrentPage}
             />
             <DropDown
               filters={genderFilter}
               queryString={queryString}
               query={"gender"}
+              param={gender? gender: ""}
               setCurrentPage={setCurrentPage}
             />
             <DropDown
               filters={statusFilter}
               queryString={queryString}
               query={"status"}
+              param={status? status: ""}
               setCurrentPage={setCurrentPage}
             />
           </div>
         </div>
-
+)}
         <Routes>
+          
           <Route
             path="/"
             element={
-              data && (
+              data || loading ? (
                 <MainFeed
                   data={data}
                   favorites={favorites}
@@ -139,11 +148,14 @@ const App: React.FC = () => {
                   totalPages={totalPages}
                   queryString={queryString}
                   name={name ? name : ""}
+                  loading={loading}
                 />
-              )
+              ) :
+              <NothingToSee text={"oops, something went wrong!"} />
             }
           />
         </Routes>
+        
       </div>
     </div>
   );
