@@ -30,7 +30,9 @@ I learned TypeScript isn't that scary.
 What I'd like to continue with this page:
     1. It isn't responsive. It would be good and relatively quick (jinx?) to make it so.
     2. Provide extra buttons in pagination so user can jump by increments, or at least to first and last pages.
-    3. Connect to a backend so user can store favorites, then display them as a separate page (as opposed to the toggle). I could then keep the search bar, but connect it to this backend instead. 
+    3. Connect to a backend so user can store favorites, then display them as a separate page (as opposed to the toggle). I could then keep the search bar, but connect it to this backend instead.
     4. For the filters, it would also be nice for the user to click an option that then shows a search bar; this way, the user can type in their own term (as I fully appreciate I may not have provided all of the options).
-    5.Putting the dropdowns in their own component...I did initially, but didn't love all the prop drilling. However, I similarly don't love how it bogged down the return statement in App. But, to do this, I'd like to use Context or Redux to provide global state to the App, this way it would also eliminate the prop drilling.
+    5. Putting the dropdowns in their own component...I did initially, but didn't love all the prop drilling. However, I similarly don't love how it bogged down the return statement in App. But, to do this, I'd like to use Context or Redux to provide global state to the App, this way it would also eliminate the prop drilling.
+
+
 
