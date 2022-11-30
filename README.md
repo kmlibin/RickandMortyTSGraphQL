@@ -1,5 +1,8 @@
 # Working with Rick and Morty GraphQL
 
+
+gh-pages: https://kmlibin.github.io/RickandMortyTSGraphQL/
+
 This is a quick React page that I made so I could work with GraphQL and TypeScript. It shows a full character, and you can filter those characters via dropdowns on the left of the page. You can also search characters by name with the search bar. All of these are connected to search params, so you can type in any of these in the url and the page and UI will load accordingly. There is basic pagination, and you can also "save" your favorites and display them by clicking the "show favorites" button at the top. At the moment, this is a toggle (ideal? not at all) - I didn't think about whether or not the api had a POST function, and I didn't want to connect it to a separate backend at this point in time.  
 
 ### Languages / Tools / Technologies
