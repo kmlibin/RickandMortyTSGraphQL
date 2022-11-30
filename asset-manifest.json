@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/RickandMortyTSGraphQL/static/css/main.b58db61e.css",
+    "main.js": "/RickandMortyTSGraphQL/static/js/main.5fd3e59c.js",
+    "static/media/sky1.jpg": "/RickandMortyTSGraphQL/static/media/sky1.6bd910a675e33d5cae8f.jpg",
+    "index.html": "/RickandMortyTSGraphQL/index.html",
+    "main.b58db61e.css.map": "/RickandMortyTSGraphQL/static/css/main.b58db61e.css.map",
+    "main.5fd3e59c.js.map": "/RickandMortyTSGraphQL/static/js/main.5fd3e59c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b58db61e.css",
+    "static/js/main.5fd3e59c.js"
+  ]
+}
