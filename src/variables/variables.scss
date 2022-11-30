@@ -1,25 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Sniglet&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cabin&family=Sniglet&display=swap");
 
 //fonts
-$headerFont : Sniglet;
+$headerFont: Sniglet;
 $bodyFont: Cabin;
 
+//font sizes
+$h2Font: 28px;
+$h3Font: 25px;
+$h4Font: 18px;
+$pFont: 14px;
+$statusFont: 10px;
+$nothingToSee: 28px;
+
 //text-colors:
-$primaryColor: rgba(40,40,40, .9);
+$primaryColor: rgba(40, 40, 40, 0.9);
 
 //colors
-$nameColor: rgba(75, 170, 202, .9);
-$mediumBlue:rgba(123, 197,230, .9);
-$lightBlue: rgba(151, 225, 255, .9);
-$lightestBlue: rgba(209, 255, 255, .9);
-$border: rgb(0, 69,97);
+$nameTagColor: rgba(75, 170, 202, 0.9);
+$mediumBlue: rgba(123, 197, 230, 0.9);
+$lightBlue: rgba(151, 225, 255, 0.9);
+$lightestBlue: rgba(209, 255, 255, 0.9);
+$darkBlue: rgb(0, 69, 97);
 
-//spacing:
+//spacing (padding and margin):
 $xsmall: 3px;
 $small: 5px;
+$medium: 10px;
 
+//border-radius
+$standard: 5px;
 
 //mixins
 @mixin mediumBlue($opacity) {
-    background-color: rgba(123, 197, 230, $opacity)
+  background-color: rgba(123, 197, 230, $opacity);
+}
+
+@mixin button($radius) {
+  background-color: $lightestBlue;
+  font-family: $bodyFont;
+  border-radius: $radius;
+  transition: background-color 0.5s ease-out;
+}
+
+@mixin btnHover($transform) {
+  cursor: pointer;
+  transform: $transform;
+  background-color: $mediumBlue;
+}
+
+@mixin btnActive($transform) {
+  transform: $transform;
+  box-shadow: 0 0px 5px 0px $darkBlue inset;
 }

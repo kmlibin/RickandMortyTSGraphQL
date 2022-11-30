@@ -1,0 +1,66 @@
+//variables
+@import "../../variables/variables.scss";
+
+.searchbar-container {
+  display: flex;
+  width: 96%;
+  margin-top: 35px;
+}
+
+.search-button {
+  @include button(0 $standard $standard 0);
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-left: -1.25em;
+  border: none;
+  z-index: 10;
+}
+
+.search-button:hover {
+  @include btnHover(null);
+}
+
+.search-button:active {
+  @include btnActive(null);
+}
+
+.search {
+  width: 50%;
+
+  form {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  input {
+    width: 100%;
+    padding: $medium;
+    font-family: $bodyFont;
+    border-radius: $standard 0 0 $standard;
+    position: relative;
+    border: none;
+    z-index: 10;
+  }
+
+  input:focus {
+    outline: none;
+    box-shadow: 0 0px 5px 0px $darkBlue inset;
+  }
+
+  i {
+    position: relative;
+    transform: translateY(30%) translateX(-1.5em);
+    margin-left: auto;
+    color: rgb(211, 211, 211);
+    z-index: 10;
+  }
+}
+
+.clear-search {
+  margin-right: auto;
+  padding: 0 7px;
+  border-radius: $standard;
+  margin-left: 1.1em;
+  z-index: 10;
+}

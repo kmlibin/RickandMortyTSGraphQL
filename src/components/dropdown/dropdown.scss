@@ -1,0 +1,39 @@
+//variables
+@import "../../variables/variables.scss";
+
+.filterboxes {
+  padding: $small;
+
+  select {
+    font-family: $bodyFont;
+    background-color: $lightestBlue;
+    padding: $small;
+    width: 100%;
+  }
+
+  select:hover {
+    cursor: pointer;
+  }
+}
+
+.filter-button {
+  color: rgb(211, 211, 211);
+  padding: $small;
+  font-family: $bodyFont;
+  background-color: $darkBlue;
+  border-radius: $small;
+  border-color: $darkBlue;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-image: none;
+
+  i {
+    padding-left: 4px;
+    vertical-align: middle;
+  }
+
+  i:hover {
+    cursor: pointer;
+  }
+}

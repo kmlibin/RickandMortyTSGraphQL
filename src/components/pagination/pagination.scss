@@ -1,0 +1,36 @@
+//variables
+@import "../../variables/variables.scss";
+
+
+.pagination {
+  display: flex;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  background-color: $mediumBlue;
+  padding: 15px;
+  align-items: center;
+  border-radius: $standard;
+
+  h4 {
+    font-family: $headerFont;
+    font-size: $h4Font;
+    padding-left: $medium;
+    padding-right: $medium;
+  }
+}
+
+.btn {
+  @include button($standard);
+  padding: $xsmall 6px;
+  border: none;
+}
+
+.btn:hover {
+  @include btnHover(scale(110%));
+  border: 1px solid $darkBlue;
+  background-color: $lightBlue;
+}
+
+.btn:active {
+  @include btnActive(scale(90%));
+}

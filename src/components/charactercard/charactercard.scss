@@ -1,0 +1,203 @@
+//variables
+@import "../../variables/variables.scss";
+
+//data container is in mainfeed.tsx
+.data-container {
+  width: 75%;
+  min-height: 100vh;
+}
+
+.feed-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.character-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  position: relative;
+  margin-top: 30px;
+}
+
+.button-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  top: -3.7em;
+}
+
+.favorites {
+  @include button($standard);
+  margin-bottom: $small;
+  margin-right: 1.71em;
+  padding: 2px $medium;
+  line-height: 25px;
+}
+.favorites:hover {
+  @include btnHover(scale(110%));
+}
+
+.favorites:active {
+  @include btnActive(scale(90%));
+}
+
+.favorites-container {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  padding-top: 13px;
+  padding-bottom: 26px;
+
+  p {
+    color: $lightestBlue;
+    font-size: 20px;
+    margin-right: 1.71em;
+    font-family: $bodyFont;
+    margin-top: $medium;
+  }
+}
+
+.all {
+  @include button($standard);
+  width: 15%;
+  margin-right: 1.71em;
+  padding: 2px $medium;
+  line-height: 25px;
+}
+
+.all:hover {
+  @include btnHover(scale(110%));
+}
+
+.all:active {
+  @include btnActive(scale(90%));
+}
+
+.character {
+  max-width: 20%;
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-radius: $small;
+  background-color: rgba(211, 211, 211, 0.5);
+  z-index: 1;
+  transition: background-color 0.5s ease-in-out;
+
+  h2 {
+    font-family: $headerFont;
+    box-shadow: 0px 0px 10px 2px $darkBlue inset;
+    border: 1px solid $darkBlue;
+    border-radius: $small;
+    color: $primaryColor;
+    font-size: $h2Font;
+    margin-top: $xsmall;
+    margin-bottom: $small;
+    text-align: center;
+    width: 100%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: $nameTagColor;
+  }
+
+  p {
+    margin: $xsmall 0;
+    color: $primaryColor;
+    max-width: 100%;
+    font-family: $bodyFont;
+    font-size: $pFont;
+    padding: $small;
+  }
+
+  .tag {
+    font-family: $headerFont;
+    padding-right: $xsmall;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 0.8px;
+  }
+
+  .color-one {
+    @include mediumBlue(0.9);
+    border-radius: $small;
+  }
+
+  .color-two {
+    background-color: $lightBlue;
+    border-radius: $small;
+  }
+  .color-three {
+    background-color: $lightestBlue;
+    border-radius: $small;
+  }
+}
+
+.character:hover {
+  background-color: white;
+  transform: scale(110%);
+  z-index: 10;
+}
+
+.img-container {
+  width: 100%;
+  height: auto;
+  position: relative;
+  margin-bottom: $small;
+
+  img {
+    height: auto;
+    width: 100%;
+    border-radius: $standard;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+      rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  }
+}
+
+.status-container {
+  display: flex;
+  align-items: center;
+  height: auto;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+
+  p {
+    font-size: $statusFont;
+    display: flex;
+    border-radius: 50%;
+    height: 6px;
+    text-align: center;
+    margin-right: $xsmall;
+    width: 6px;
+    font-family: $bodyFont;
+    font-weight: bolder;
+    line-height: 6px;
+  }
+
+  i:hover {
+    cursor: pointer;
+    transform: scale(120%);
+    color: rgb(214, 44, 44);
+  }
+
+  .dead {
+    background-color: red;
+  }
+
+  .alive {
+    background-color: rgb(31, 223, 31);
+  }
+
+  .unknown {
+    background-color: yellow;
+  }
+
+  .fill {
+    color: rgb(214, 44, 44);
+  }
+}
