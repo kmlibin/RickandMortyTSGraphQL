@@ -45,6 +45,9 @@ What I'd like to continue with this page:
     5. Putting the dropdowns in their own component...I did initially, but didn't love all the prop drilling. However, I similarly don't 
     love how it bogged down the return statement in App. But, to do this, I'd like to use Context or Redux to provide global state to
     the App, this way it would also eliminate the prop drilling.
+    
+    6. It would be nice if a user can click on any character from the list, then have it take the user to a new page where it 
+    further expands on character details (same info, plus list of episodes, plus whatever other info the API has for characters).
 
 
 
