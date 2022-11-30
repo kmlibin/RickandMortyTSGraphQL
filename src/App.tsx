@@ -4,26 +4,25 @@ import { Routes, Route, useSearchParams } from "react-router-dom";
 //Apollo
 import { useQuery } from "@apollo/client";
 
-//queries
-import { GET_CHARACTERS } from "./files/gql";
+//api queries
+import { GET_CHARACTERS } from "./api/gql";
 
 //TS interfaces
-import { ICharacter, Select } from "./files/model";
+import { ICharacter, ISelect } from "./models/model";
 
 //pages and components
-import { MainFeed } from "./pages/MainFeed";
-import { DropDown } from "./components/DropDown";
-import NothingToSee from "./components/NothingToSee";
+import { MainFeed } from "./pages/mainfeed/MainFeed";
+import { DropDown } from "./components/dropdown/DropDown";
+import NothingToSee from "./components/nothingtosee/NothingToSee";
 
 //styles & AOS init
-import "./styles/App.scss";
+import './App.scss'
 import Aos from "aos";
 import "aos/dist/aos.css";
 
 
-
 //filters for dropdown menus - store in own file?
-const speciesFilter: Select[] = [
+const speciesFilter: ISelect[] = [
   { value: "human", label: "Human" },
   { value: "alien", label: "Alien" },
   { value: "robot", label: "Robot" },
@@ -33,14 +32,14 @@ const speciesFilter: Select[] = [
   { value: "mythological creature", label: "Mythological Creature" },
   { value: "disease", label: "Disease" },
 ];
-const genderFilter: Select[] = [
+const genderFilter: ISelect[] = [
   { value: "male", label: "Male" },
   { value: "female", label: "Female" },
   { value: "genderless", label: "Genderless" },
   { value: "unknown", label: "Unknown" },
 ];
 
-const statusFilter: Select[] = [
+const statusFilter: ISelect[] = [
   { value: "alive", label: "Alive" },
   { value: "dead", label: "Dead" },
   { value: "unknown", label: "Unknown" },
@@ -63,7 +62,6 @@ const App: React.FC = () => {
   const status: string | null = searchParams.get("status");
   const name: string | null = searchParams.get("name");
 
-  console.log(species, gender, status, name);
   //create query string object that is ultimately sent to setSearchParams in child components
   let queryString: {
     [k: string]: string;
@@ -80,7 +78,7 @@ const App: React.FC = () => {
     },
   });
 
-  console.log(gender)
+
   //calculate total pages with each data load
   useMemo(() => {
     setTotalPages(data?.characters.info.pages);
@@ -92,10 +90,10 @@ const App: React.FC = () => {
         <div className="title">
           <img
             data-aos="flip-right"
-            data-aos-duration="3000"
+            data-aos-duration="2000"
             src="https://www.freepnglogos.com/uploads/rick-and-morty-png/list-rick-and-morty-episodes-wikipedia-24.png"
           />
-          <p>Boom! Big reveal! I turned myself into a pickle!</p>
+          <h3>Boom! Big reveal! I turned myself into a pickle!</h3>
         </div>
       </div>
       {/* //previously was its own component, but found I didn't love the prop drilling as the page got larger. If I continue to
