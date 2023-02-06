@@ -14,14 +14,12 @@ import { ICharacter, ISelect } from "./models/model";
 import { MainFeed } from "./pages/mainfeed/MainFeed";
 import { DropDown } from "./components/dropdown/DropDown";
 import NothingToSee from "./components/nothingtosee/NothingToSee";
-import { Header } from "./pages/header/Header";
+import { Header } from "./components/header/Header";
 
 //styles & AOS init
-import './App.scss'
+import "./App.scss";
 import Aos from "aos";
 import "aos/dist/aos.css";
-
-
 
 //filters for dropdown menus - store in own file?
 const speciesFilter: ISelect[] = [
@@ -48,15 +46,30 @@ const statusFilter: ISelect[] = [
 ];
 
 const App: React.FC = () => {
-  useEffect(() => {
-    Aos.init({ duration: 2000 });
-  }, []);
-
+  const [innerWidth, setInnerWidth] = useState(window.innerWidth);
+  const [toggle, setToggle] = useState(false);
   // const [name, setName] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number | undefined>();
   const [favorites, setFavorites] = useState<ICharacter[]>([]);
   const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setInnerWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  });
+  console.log(innerWidth);
 
   //grab and store search params
   const species: string | null = searchParams.get("species");
@@ -80,7 +93,6 @@ const App: React.FC = () => {
     },
   });
 
-
   //calculate total pages with each data load
   useMemo(() => {
     setTotalPages(data?.characters.info.pages);
@@ -88,54 +100,88 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      {/* <div className="hero">
-        <div className="title">
-          <img
-            data-aos="flip-right"
-            data-aos-duration="2000"
-            src="https://www.freepnglogos.com/uploads/rick-and-morty-png/list-rick-and-morty-episodes-wikipedia-24.png"
-          />
-          <h3>Boom! Big reveal! I turned myself into a pickle!</h3>
-        </div>
-      </div> */}
       <Header />
       {/* //previously was its own component, but found I didn't love the prop drilling as the page got larger. If I continue to
       expand the page, I'd likely turn this back into a component and utilize context or redux for state management. */}
       <div className="content-container">
-        {error || loading ? "" : (
-        <div className="sidebar">
-          <div className="filters">
-            <img
-              src="https://www.freepnglogos.com/uploads/rick-and-morty-png/rick-and-morty-monsters-transparent-png-stickpng-2.png"
-              alt="rick and morty monsters transparent png stickpng"
-            />
-            <h4>Open your eyes, Morty!</h4>
-            <DropDown
-              filters={speciesFilter}
-              queryString={queryString}
-              query={"species"}
-              param={species? species : ""}
-              setCurrentPage={setCurrentPage}
-            />
-            <DropDown
-              filters={genderFilter}
-              queryString={queryString}
-              query={"gender"}
-              param={gender? gender: ""}
-              setCurrentPage={setCurrentPage}
-            />
-            <DropDown
-              filters={statusFilter}
-              queryString={queryString}
-              query={"status"}
-              param={status? status: ""}
-              setCurrentPage={setCurrentPage}
-            />
-          </div>
-        </div>
-)}
+        {error || loading ? (
+          ""
+        ) : (
+          <>
+            {innerWidth < 800 && (
+              <>
+              <div className="responsive-filter">
+               
+                  <p>Show Filters
+                  <i
+                    className="fa fa-filter"
+                    onClick={() => setToggle(!toggle)}
+                  ></i>
+              </p>
+              </div>
+                {toggle && (
+                  <div className="responsive-dropdown">
+                    <DropDown
+                      filters={speciesFilter}
+                      queryString={queryString}
+                      query={"species"}
+                      param={species ? species : ""}
+                      setCurrentPage={setCurrentPage}
+                    />
+                    <DropDown
+                      filters={genderFilter}
+                      queryString={queryString}
+                      query={"gender"}
+                      param={gender ? gender : ""}
+                      setCurrentPage={setCurrentPage}
+                    />
+                    <DropDown
+                      filters={statusFilter}
+                      queryString={queryString}
+                      query={"status"}
+                      param={status ? status : ""}
+                      setCurrentPage={setCurrentPage}
+                    />
+                 </div> 
+                )}
+              </>
+            )}
+            {innerWidth > 800 && (
+              <div className="sidebar">
+                <div className="filters">
+                  <img
+                    src="https://www.freepnglogos.com/uploads/rick-and-morty-png/rick-and-morty-monsters-transparent-png-stickpng-2.png"
+                    alt="rick and morty monsters transparent png stickpng"
+                  />
+                  <h4>Open your eyes, Morty!</h4>
+
+                  <DropDown
+                    filters={speciesFilter}
+                    queryString={queryString}
+                    query={"species"}
+                    param={species ? species : ""}
+                    setCurrentPage={setCurrentPage}
+                  />
+                  <DropDown
+                    filters={genderFilter}
+                    queryString={queryString}
+                    query={"gender"}
+                    param={gender ? gender : ""}
+                    setCurrentPage={setCurrentPage}
+                  />
+                  <DropDown
+                    filters={statusFilter}
+                    queryString={queryString}
+                    query={"status"}
+                    param={status ? status : ""}
+                    setCurrentPage={setCurrentPage}
+                  />
+                </div>
+              </div>
+            )}
+          </>
+        )}
         <Routes>
-          
           <Route
             path="/"
             element={
@@ -151,12 +197,12 @@ const App: React.FC = () => {
                   name={name ? name : ""}
                   loading={loading}
                 />
-              ) :
-              <NothingToSee text={"oops, something went wrong!"} />
+              ) : (
+                <NothingToSee text={"oops, something went wrong!"} />
+              )
             }
           />
         </Routes>
-        
       </div>
     </div>
   );
