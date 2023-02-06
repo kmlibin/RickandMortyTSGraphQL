@@ -14,11 +14,13 @@ import { ICharacter, ISelect } from "./models/model";
 import { MainFeed } from "./pages/mainfeed/MainFeed";
 import { DropDown } from "./components/dropdown/DropDown";
 import NothingToSee from "./components/nothingtosee/NothingToSee";
+import { Header } from "./pages/header/Header";
 
 //styles & AOS init
 import './App.scss'
 import Aos from "aos";
 import "aos/dist/aos.css";
+
 
 
 //filters for dropdown menus - store in own file?
@@ -86,7 +88,7 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <div className="hero">
+      {/* <div className="hero">
         <div className="title">
           <img
             data-aos="flip-right"
@@ -95,7 +97,8 @@ const App: React.FC = () => {
           />
           <h3>Boom! Big reveal! I turned myself into a pickle!</h3>
         </div>
-      </div>
+      </div> */}
+      <Header />
       {/* //previously was its own component, but found I didn't love the prop drilling as the page got larger. If I continue to
       expand the page, I'd likely turn this back into a component and utilize context or redux for state management. */}
       <div className="content-container">
