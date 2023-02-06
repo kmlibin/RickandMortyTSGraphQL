@@ -36,7 +36,7 @@ export default function Search({ queryString, name: urlName }: Props) {
       <div className="search">
         <form onSubmit={(e) => handleSubmit(e)}>
           <input
-            placeholder="Search by Character"
+            placeholder="Character"
             value={queryName ? queryName : ""}
             type="text"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {

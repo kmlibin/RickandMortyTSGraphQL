@@ -5,12 +5,23 @@
 .data-container {
   width: 75%;
   min-height: 100vh;
+
+  
+  @media screen and (max-width: 800px) {
+    min-width: 100%;
+
+  }
+  
 }
+
+  
 
 .feed-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+
 }
 
 .character-container {
@@ -20,6 +31,11 @@
   flex-wrap: wrap;
   position: relative;
   margin-top: 30px;
+
+  @media screen and (max-width: 800px) {
+    justify-content: center;
+  }
+
 }
 
 .button-container {
@@ -28,6 +44,11 @@
   justify-content: flex-end;
   position: absolute;
   top: -3.7em;
+
+  @media screen and (max-width: 800px) {
+  display: none;
+    
+  }
 }
 
 .favorites {
@@ -68,6 +89,7 @@
   margin-right: 1.71em;
   padding: 2px $medium;
   line-height: 25px;
+
 }
 
 .all:hover {
@@ -88,6 +110,13 @@
   background-color: rgba(211, 211, 211, 0.5);
   z-index: 1;
   transition: background-color 0.5s ease-in-out;
+
+  @media screen and (max-width: 800px) {
+    min-width: 80%;
+    max-width: 100%;
+    padding: 2em;
+    
+  }
 
   h2 {
     font-family: $headerFont;
