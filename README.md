@@ -18,10 +18,11 @@ Worked with Rick and Morty GraphQL API
 ### Project Highlights
 
     1. Usual react stuff like useState, useEffect, useMemo, search Params, react router-dom, conditional rendering, forms, etc.
-    2. TypeScript for type checking
-    3. Connection to GraphQL api with ApolloClient
-    4. SASS styling - use of variables and mixins
+    2. TypeScript for type checking.
+    3. Connection to GraphQL api with ApolloClient.
+    4. SASS styling - use of variables and mixins.
     5. The Rick and Morty image shakes at the top. I like it.
+    6. It is generally responsive.
     
 
 ### What I learned / Things to keep working on with this page
