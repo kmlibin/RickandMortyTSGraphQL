@@ -10,6 +10,9 @@ import { GET_CHARACTERS } from "./api/gql";
 //TS interfaces
 import { ICharacter, ISelect } from "./models/model";
 
+//filter lists
+import { speciesFilter, genderFilter, statusFilter } from "./Appfilters";
+
 //pages and components
 import { MainFeed } from "./pages/mainfeed/MainFeed";
 import { DropDown } from "./components/dropdown/DropDown";
@@ -21,33 +24,10 @@ import "./App.scss";
 import Aos from "aos";
 import "aos/dist/aos.css";
 
-//filters for dropdown menus - store in own file?
-const speciesFilter: ISelect[] = [
-  { value: "human", label: "Human" },
-  { value: "alien", label: "Alien" },
-  { value: "robot", label: "Robot" },
-  { value: "humanoid", label: "Humanoid" },
-  { value: "cronenberg", label: "Cronenberg" },
-  { value: "animal", label: "Animal" },
-  { value: "mythological creature", label: "Mythological Creature" },
-  { value: "disease", label: "Disease" },
-];
-const genderFilter: ISelect[] = [
-  { value: "male", label: "Male" },
-  { value: "female", label: "Female" },
-  { value: "genderless", label: "Genderless" },
-  { value: "unknown", label: "Unknown" },
-];
-
-const statusFilter: ISelect[] = [
-  { value: "alive", label: "Alive" },
-  { value: "dead", label: "Dead" },
-  { value: "unknown", label: "Unknown" },
-];
 
 const App: React.FC = () => {
-  const [innerWidth, setInnerWidth] = useState(window.innerWidth);
-  const [toggle, setToggle] = useState(false);
+  const [innerWidth, setInnerWidth] = useState<number>(window.innerWidth);
+  const [toggle, setToggle] = useState<boolean>(false);
   // const [name, setName] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number | undefined>();
@@ -69,7 +49,7 @@ const App: React.FC = () => {
       window.removeEventListener("resize", handleWindowResize);
     };
   });
-  console.log(innerWidth);
+  
 
   //grab and store search params
   const species: string | null = searchParams.get("species");
@@ -101,7 +81,7 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <Header />
-      {/* //previously was its own component, but found I didn't love the prop drilling as the page got larger. If I continue to
+      {/* //previously, the filter/dropdown container was its own component, but found I didn't love the prop drilling as the page got larger. If I continue to
       expand the page, I'd likely turn this back into a component and utilize context or redux for state management. */}
       <div className="content-container">
         {error || loading ? (
