@@ -10,24 +10,20 @@
   flex-direction: row;
   justify-content: space-evenly;
 
-@media screen and (max-width: 800px) {
-  flex-direction: column;
-
-}
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+  }
   .sidebar {
     width: 15%;
     margin-top: 80px;
 
-
     @media screen and (max-width: 800px) {
       min-width: 100%;
-      margin-top:0px;  
-      
+      margin-top: 0px;
     }
   }
 
   .responsive-filter {
-   
     font-size: $pFont;
     font-family: $bodyFont;
     color: $primaryColor;
@@ -35,15 +31,12 @@
     border-radius: $standard;
     padding: $medium;
     margin: $small;
-    
-    
+
     width: 98px;
-    
 
     p {
       white-space: nowrap;
       width: fit-content;
-    
     }
     i {
       padding-left: 5px;
@@ -52,7 +45,7 @@
 
   .responsive-dropdown {
     background-color: $lightestBlue;
-    max-width: 90%;
+    max-width: 95%;
     margin-left: $small;
     margin-bottom: $small;
     border-radius: $standard;
@@ -74,11 +67,7 @@
   @media screen and (max-width: 800px) {
     min-width: 100%;
     position: relative;
-    margin-top: .5em;
-    
-    
-    
-    
+    margin-top: 0.5em;
   }
 
   h4 {
@@ -92,8 +81,7 @@
     letter-spacing: 1px;
 
     @media screen and (max-width: 800px) {
-      display: none;  
-      
+      display: none;
     }
   }
 
@@ -106,7 +94,6 @@
       width: 100px;
       height: 100px;
       flex: 1;
-      
     }
   }
 }
